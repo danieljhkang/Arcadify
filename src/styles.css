@@ -1,0 +1,451 @@
+/* * {
+    box-sizing: border-box;
+} */
+
+body {
+    margin: 0;
+    background-color: #1f1f1f;
+    overflow: auto;
+}
+
+h1 {
+    color: white;
+    font-size: 25px;
+}
+
+h2 {
+    color: white;
+}
+
+.container {
+    margin: 1rem;
+    text-align: center;
+}
+
+/* SELECTOR AREA 1*/
+#selectorArea1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+}
+
+/* SELECTOR AREA 2*/
+#selectorArea2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+}
+
+#leftArrow {
+    background-color: transparent;
+    height: 50px;
+    padding: 0px;
+    border-color: transparent;
+}
+
+#leftArrowImg {
+    height: 50px;
+}
+
+#rightArrow {
+    background-color: transparent;
+    height: 50px;
+    padding: 0px;
+    border-color: transparent;
+}
+
+#rightArrowImg {
+    height: 50px;
+}
+
+#selectionText {
+    font-family: arcade;
+    color: white;
+    margin-right: 30px;
+    margin-left: 30px;
+    font-size: 16px;
+}
+
+
+
+/* CAPTURE AREA */
+
+.machineTemplate {
+    position: relative;
+    object-fit: contain;
+    object-position: center;
+    z-index: -10;
+    display: block
+        /* do not remove display: block, it removes the 3px padding on chrome */
+}
+
+#termDisplay {
+    color: #da3334;
+    position: absolute;
+    top: 201px;
+    text-align: center;
+    width: 100%;
+    font-size: 12px;
+    font-family: arcade;
+}
+
+#dayTag {
+    color: #f9de54;
+    position: absolute;
+    top: 151px;
+    text-align: left;
+    right: 94px;
+    font-size: 13px;
+    font-family: arcade;
+}
+
+#monthTag {
+    color: #f9de54;
+    position: absolute;
+    top: 151px;
+    text-align: left;
+    left: 234px;
+    font-size: 13px;
+    font-family: arcade;
+}
+
+#yearTag {
+    color: #f9de54;
+    position: absolute;
+    top: 151px;
+    text-align: left;
+    left: 94px;
+    font-size: 13px;
+    font-family: arcade;
+}
+
+#dayVal {
+    color: white;
+    position: absolute;
+    top: 168px;
+    text-align: left;
+    right: 94px;
+    font-size: 13px;
+    font-family: arcade;
+}
+
+#monthVal {
+    color: white;
+    position: absolute;
+    top: 168px;
+    text-align: left;
+    left: 254px;
+    font-size: 13px;
+    font-family: arcade;
+}
+
+#yearVal {
+    color: white;
+    position: absolute;
+    top: 168px;
+    text-align: left;
+    left: 94px;
+    font-size: 13px;
+    font-family: arcade;
+}
+
+#hs-text {
+    color: #da3334;
+    position: absolute;
+    top: 222px;
+    text-align: left;
+    left: 173px;
+    font-size: 17px;
+    font-family: arcade;
+}
+
+#artist-view {
+    color: white;
+    position: absolute;
+    top: 291px;
+    text-align: left;
+    left: 144px;
+    font-size: 13px;
+    font-family: arcade;
+}
+
+#artist-item {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 39px;
+}
+
+#leaderboard-view {
+    color: #da3334;
+    position: absolute;
+    top: 275px;
+    text-align: right;
+    left: 94px;
+    font-size: 13px;
+    font-family: arcade;
+}
+
+#leaderboard-item {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 39px;
+}
+
+#songName-view {
+    color: #f9de54;
+    position: absolute;
+    top: 275px;
+    text-align: left;
+    left: 144px;
+    font-size: 13px;
+    font-family: arcade;
+}
+
+#songName-item {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 39px;
+}
+
+#popScore-view {
+    color: #575ff7;
+    position: absolute;
+    top: 275px;
+    text-align: left;
+    right: 96px;
+    font-size: 13px;
+    font-family: arcade;
+}
+
+#popScore-item {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 39px;
+}
+
+#userName {
+    /* margin-left: 146px;
+    margin-right: 146px; */
+    color: #da3334;
+    position: absolute;
+    top: 689.5px;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    font-family: arcade;
+}
+
+#userName2 {
+    color: #da3334;
+    position: absolute;
+    top: 709px;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    font-family: arcade;
+}
+
+#total-text {
+    color: #575ff7;
+    position: absolute;
+    bottom: 245px;
+    text-align: center;
+    width: 100%;
+    font-size: 13px;
+    font-family: arcade;
+}
+
+#captureArea {
+    /* border: 1px solid white; */
+    margin-left: auto;
+    margin-right: auto;
+    width: 530px;
+    display: relative;
+    position: relative;
+}
+
+/* NAV BAR */
+
+.nav {
+    color: white;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.site-title {
+    color: white;
+    font-family: "Helvetica Neue", sans-serif;
+    font-size: 4rem;
+    text-align: center;
+    text-decoration: none;
+    height: 100%;
+    margin: 10px;
+}
+
+.nav ul {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    list-style: none;
+    font-size: 20px;
+    gap: 1rem;
+}
+
+.nav li {
+    display: inline;
+    border-radius: 5px;
+}
+
+.nav a {
+    color: inherit;
+    text-decoration: none;
+    height: 100%;
+    display: inline-block;
+    padding: 1rem;
+    text-align: center;
+}
+
+.nav li.active {
+    background-color: #24e68e;
+    color: #1f1f1f;
+}
+
+.nav li:hover {
+    background-color: #a7fa96;
+    color: #1f1f1f;
+}
+
+.homeText {
+    margin: 20px;
+}
+
+/* DOWNLOAD AND LOGOUT */
+
+.downloadButton {
+    display: inline-block;
+}
+
+.logoutButton {
+    display: inline-block;
+}
+
+/* SPOTIFY BUTTON */
+
+.spotifyButton {
+    appearance: none;
+    background-color: #24e68e;
+    border-width: 0;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Clarkson, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1em;
+    margin: 20px;
+    opacity: 1;
+    outline: 0;
+    padding: 1.5em 2.2em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-rendering: geometricprecision;
+    text-transform: uppercase;
+    transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1), background-color 100ms cubic-bezier(.694, 0, 0.335, 1), color 100ms cubic-bezier(.694, 0, 0.335, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+.spotifyButton:before {
+    animation: opacityFallbackOut .5s step-end forwards;
+    backface-visibility: hidden;
+    background-color: #a7fa96;
+    border-radius: 15px;
+    clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translateZ(0);
+    transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+    width: 100%;
+}
+
+.spotifyButton:hover:before {
+    animation: opacityFallbackIn 0s step-start forwards;
+    clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+}
+
+.spotifyButton:after {
+    background-color: #a7fa96;
+}
+
+.spotifyButton span {
+    z-index: 1;
+    position: relative;
+}
+
+/* BOTTOM FOOTER */
+
+.footerLine {
+    margin: 0;
+    display: inline-block;
+    position: relative;
+    border-top: 1px solid #ccc;
+    height: 1px;
+    width: 300px;
+}
+
+.nameTag {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    margin: 2px;
+    color: white;
+}
+
+.nameLink {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    margin: 2px;
+    text-decoration: none;
+    color: #24e68e;
+}
+
+.spotifyLogo {
+    width: 10%;
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.center {
+    margin: 0;
+    text-align: center;
+}
+
+@font-face {
+    font-family: arcade;
+    src: url("./assets/ARCADE_N.TTF");
+}
