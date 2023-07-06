@@ -74,7 +74,6 @@ const Home = () => {
     * Changes the user's link to the spotify login link
     */
     const handleLogin = () => {
-        console.log(process.env.REACT_APP_CLIENT_ID);
         window.location = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${REDIRECT_URL_AFTER_LOGIN}&scope=${SCOPES_URL_PARAM}&response_type=token&show_dialog=true`;
     };
 
