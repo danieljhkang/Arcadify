@@ -19,4 +19,4 @@ We need react-query
 
 $ npm i react-query
 
-You need axios, bootstrap, jquery, and popper.js
+We aint done yet so wait a little bit..
