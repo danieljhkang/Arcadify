@@ -55,7 +55,7 @@ const Home = () => {
         localStorage.setItem("accessToken", access_token);
         localStorage.setItem("tokenType", token_type);
         localStorage.setItem("expiresIn", expires_in);
-        //FUCK THIS SHIT - access token it loading properly here
+        //access token it loading properly here
 
         if (window.location.hash){
             setIsLoggedIn(true);
