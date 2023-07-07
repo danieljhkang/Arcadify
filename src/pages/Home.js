@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import FileSaver, { saveAs } from 'file-saver';
 import domtoimage from 'dom-to-image';
 import GetTopSongs from "../components/GetTopSongs";
 import GetUsername from "../components/GetUsername";
 import machineTemplate from "../assets/arcadifyMachine.svg";
 import leftArrow from "../assets/leftArrow.png";
 import rightArrow from "../assets/rightArrow.png";
+import GetTopArtists from '../components/GetTopArtists';
+import GetTopGenres from '../components/GetTopArtists';
 
 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -36,12 +37,7 @@ const Home = () => {
     
     const [currentSubject, setCurrentSubject] = useState("top_tracks");
     const [subjectText, setSubjectText] = useState("TOP TRACKS");
-   
-    /*
-    * determines whether  the log in button is shown based on the user's link
-    */
     
-
     /*
     * takes spotify access token and sets them into localStorage
     */
@@ -57,6 +53,9 @@ const Home = () => {
         localStorage.setItem("expiresIn", expires_in);
         //access token it loading properly here
 
+        /*
+        * determines whether  the log in button is shown based on the user's link
+        */
         if (window.location.hash){
             setIsLoggedIn(true);
         }else{
@@ -96,16 +95,14 @@ const Home = () => {
         });
     }
 
-    const subjectOptions = ["top_tracks", "top_artists", "top_genres", "user_stats"];
-
     const handleSetSubjectLeft = () => {
-        if(currentSubject == "top_tracks"){
+        if(currentSubject === "top_tracks"){
             setCurrentSubject("user_stats");
             setSubjectText("USER STATS");
-        }else if(currentSubject == "top_artists"){
+        }else if(currentSubject === "top_artists"){
             setCurrentSubject("top_tracks");
             setSubjectText("TOP TRACKS");
-        }else if(currentSubject == "top_genres"){
+        }else if(currentSubject === "top_genres"){
             setCurrentSubject("top_artists");
             setSubjectText("TOP ARTISTS");
         }else{
@@ -115,13 +112,13 @@ const Home = () => {
     }
 
     const handleSetSubjectRight = () => {
-        if(currentSubject == "top_tracks"){
+        if(currentSubject === "top_tracks"){
             setCurrentSubject("top_artists");
             setSubjectText("TOP ARTISTS");
-        }else if(currentSubject == "top_artists"){
+        }else if(currentSubject === "top_artists"){
             setCurrentSubject("top_genres");
             setSubjectText("TOP GENRES");
-        }else if(currentSubject == "top_genres"){
+        }else if(currentSubject === "top_genres"){
             setCurrentSubject("user_stats");
             setSubjectText("USER STATS");
         }else{
@@ -130,13 +127,11 @@ const Home = () => {
         }
     }
 
-    const termOptions = ["short_term", "medium_term", "long_term"];
-
     const handleSetTermLeft = () => {
-        if(currentTerm == "short_term"){
+        if(currentTerm === "short_term"){
             setCurrentTerm("long_term");
             setTermText("ALL TIME");
-        }else if (currentTerm == "medium_term"){
+        }else if (currentTerm === "medium_term"){
             setCurrentTerm("short_term");
             setTermText("LAST MONTH");
         }else{
@@ -147,10 +142,10 @@ const Home = () => {
     }
 
     const handleSetTermRight = () => {
-        if(currentTerm == "medium_term"){
+        if(currentTerm === "medium_term"){
             setCurrentTerm("long_term");
             setTermText("ALL TIME");
-        }else if (currentTerm == "long_term"){
+        }else if (currentTerm === "long_term"){
             setCurrentTerm("short_term");
             setTermText("LAST MONTH");
         }else{
@@ -166,22 +161,23 @@ const Home = () => {
             { !isLoggedIn && ( <button onClick={handleLogin} className="spotifyButton"><span>Spotify Login</span></button> )}
             { isLoggedIn &&
                 <div id="selectorArea1">
-                <button id = "leftArrow" onClick={handleSetSubjectLeft}><img id="leftArrowImg"src={leftArrow}></img></button>
+                <button className="leftArrow" onClick={handleSetSubjectLeft}><img className="leftArrowImg"src={leftArrow} alt="leftArrow"></img></button>
                 <p id="selectionText">{subjectText}</p>
-                <button id = "rightArrow" onClick={handleSetSubjectRight}><img id="rightArrowImg"src={rightArrow}></img></button>
+                <button className= "rightArrow" onClick={handleSetSubjectRight}><img className="rightArrowImg"src={rightArrow}alt="rightArrow"></img></button>
             </div>
             }
             { isLoggedIn &&
                 <div id="selectorArea2">
-                <button id = "leftArrow" onClick={handleSetTermLeft}><img id="leftArrowImg"src={leftArrow}></img></button>
+                <button className="leftArrow" onClick={handleSetTermLeft}><img className="leftArrowImg"src={leftArrow}alt="leftArrow"></img></button>
                 <p id="selectionText">{termText}</p>
-                <button id = "rightArrow" onClick={handleSetTermRight}><img id="rightArrowImg"src={rightArrow}></img></button>
+                <button className= "rightArrow" onClick={handleSetTermRight}><img className="rightArrowImg"src={rightArrow}alt="rightArrow"></img></button>
             </div>
             }
             <div id="captureArea">
-                { isLoggedIn && (<GetTopSongs termProp = {{curTerm: {currentTerm}, termText: {termText}}} />)}
+                { isLoggedIn && currentSubject === "top_tracks" && (<GetTopSongs termProp = {{curTerm: {currentTerm}, termText: {termText}}} />)}
+                { isLoggedIn && currentSubject === "top_artists" && (<GetTopArtists termProp = {{curTerm: {currentTerm}, termText: {termText}}} />)}
                 { isLoggedIn && (<GetUsername />)}
-                { isLoggedIn && (<img className="machineTemplate"src={machineTemplate}/>)}
+                { isLoggedIn && (<img className="machineTemplate"src={machineTemplate} alt="arcadeMachine"/>)}
             </div>
             
             <br/>

@@ -15,6 +15,7 @@ h1 {
 
 h2 {
     color: white;
+    font-family: "Helvetica Neue", sans-serif;
 }
 
 .container {
@@ -38,25 +39,25 @@ h2 {
     margin: 30px;
 }
 
-#leftArrow {
+.leftArrow {
     background-color: transparent;
     height: 50px;
     padding: 0px;
     border-color: transparent;
 }
 
-#leftArrowImg {
+.leftArrowImg {
     height: 50px;
 }
 
-#rightArrow {
+.rightArrow {
     background-color: transparent;
     height: 50px;
     padding: 0px;
     border-color: transparent;
 }
 
-#rightArrowImg {
+.rightArrowImg {
     height: 50px;
 }
 
@@ -326,6 +327,8 @@ h2 {
 
 .homeText {
     margin: 20px;
+    font-size: 16px;
+    font-family: arcade;
 }
 
 /* DOWNLOAD AND LOGOUT */
@@ -443,6 +446,21 @@ h2 {
 .center {
     margin: 0;
     text-align: center;
+}
+
+.about-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    display: relative;
+    position: relative;
+}
+
+.about-text {
+    margin: 0;
+    color: white;
+    font-size: 18px;
+    font-family: "Helvetica Neue", sans-serif;
 }
 
 @font-face {
