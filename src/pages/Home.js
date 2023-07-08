@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { saveAs } from 'file-saver';
 import domtoimage from 'dom-to-image';
 import GetTopSongs from "../components/GetTopSongs";
 import GetUsername from "../components/GetUsername";
@@ -88,7 +89,7 @@ const Home = () => {
            },2000);    
     };
 
-    const handleDownload2 = () => {
+    const handleDownload = () => {
         domtoimage.toBlob(document.getElementById('captureArea'))
         .then(function (blob) {
             window.saveAs(blob, 'arcadify.png');
@@ -182,7 +183,7 @@ const Home = () => {
             
             <br/>
             { isLoggedIn && 
-                (<button className="spotifyButton" onClick={handleDownload2} >Download Image</button>)}
+                (<button className="spotifyButton" onClick={handleDownload} >Download Image</button>)}
             <br/>
             { isLoggedIn && 
             (<button className="spotifyButton" role="link" onClick={()=> handleLogout("https://accounts.spotify.com/en/logout")}>Log Out</button>)}

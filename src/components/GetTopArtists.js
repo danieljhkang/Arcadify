@@ -133,16 +133,6 @@ const GetTopArtists = (termProp) => {
                 <p id="leaderboard-item">7TH</p>
                 <p id="leaderboard-item">8TH</p>
             </div>
-            <div id="artist-view">
-                <p id="artist-item">{artistData[0]}</p>
-                <p id="artist-item">{artistData[1]}</p>
-                <p id="artist-item">{artistData[2]}</p>
-                <p id="artist-item">{artistData[3]}</p>
-                <p id="artist-item">{artistData[4]}</p>
-                <p id="artist-item">{artistData[5]}</p>
-                <p id="artist-item">{artistData[6]}</p>
-                <p id="artist-item">{artistData[7]}</p>
-            </div>
             <div id="songName-view">
                 <p id="songName-item">{clippedData[0]}</p>   
                 <p id="songName-item">{clippedData[1]}</p>             
