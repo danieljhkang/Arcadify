@@ -25,8 +25,6 @@ const GetTopSongs = (termProp) => {
     useEffect(() => {
         if (localStorage.getItem("accessToken")) {
             setToken(localStorage.getItem("accessToken"));
-            //THIS IS WHERE THE STARTUP PROBLEM IS, ITS SETTING TO THE WRONG ONE
-            console.log("TopSong Token : " + localStorage.getItem("accessToken"));
         }
         setMount(!mount);
     }, []); //empty dependencies array = only runs once when app is opened

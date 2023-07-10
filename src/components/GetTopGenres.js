@@ -7,13 +7,12 @@ const GetTopGenres = (termProp) => {
         const TERM = termProp.termProp.curTerm.currentTerm;
         const termDisplay = termProp.termProp.termText.termText;
         const SONGS_ENDPOINT = `https://api.spotify.com/v1/me/top/artists?limit=50&time_range=${TERM}`; // endpoint = api?, Route to get information from
-        //generate 50 songs, find top genres based on the top 50 songs
+        //generate 50 artists, find top genres based on the top 50 artists
     
         const [token, setToken] = useState('');
         // const [data, setData] = useState({}); //this data is from spotify
         const [mount, setMount] = useState(false); //boolean to control the number of calls
         const [clippedData, setClippedData] = useState([]);
-        const [artistData, setArtistData] = useState([]);
         const [popScoreData, setPopScoreData] = useState([])
         const [totalScore, setTotalScore] = useState(0);
     ;
@@ -39,11 +38,8 @@ const GetTopGenres = (termProp) => {
                 Authorization: "Bearer " + token,
             }
             }).then(response => {
-                // setData(response.data);
                 itemArray = response.data.items;
-                handleGetPopScore();
                 titleCharacterLimiter();
-                handleGetArtistNames();
             })
             .catch((error) => {
                 console.log(error);
@@ -51,59 +47,44 @@ const GetTopGenres = (termProp) => {
         };
     
         /*
-        Gets popularity score of each song...BUT SPOTIFY API SAY NOOOOO
-        */
-        const handleGetPopScore = () => {
-            let popScoreArray = []; 
-            let totalScore = 0;
-            for(let i = 0; i < 8; i++){
-                let indivData = itemArray[i];
-                let indivScore = (i+2) * 100 + indivData.popularity;
-                popScoreArray.push(indivScore);
-                totalScore += indivScore;
-            }
-            setPopScoreData(popScoreArray);
-            setTotalScore(totalScore);
-        }
-    
-        /*
-        * Takes object received from response.data then limits the track title to 18 characters
+        * Takes object received from response.data then limits the genre title to 18 characters
         */
         const titleCharacterLimiter = () => {
-            let titleArray = [];
-            for(let i = 0; i < 8; i++){
+            let genreMap = new Map();
+            for(let i = 0; i < 50; i++){
                 let indivData = itemArray[i];
-                let indivName = indivData.name
-                indivName = indivName.substring(0,18);
-                titleArray.push(indivName);
-            }
-            setClippedData(titleArray);
-        }
-    
-        //item array[8] -> artists array[x]
-        const handleGetArtistNames = () => {
-            let finalArray = [];
-            for(let i = 0; i < 8; i++){
-                let indivData = itemArray[i];
-                let artistsArray = indivData.artists; //array containing every artist on song
-                //put every artist name in a single string
-                let artistString;
-                for(let i = 0; i< artistsArray.length;i++){
-                    if(i!==0){
-                        //add a comma
-                        artistString += ", ";
-                        artistString += artistsArray[i].name;
+                let genresArray = indivData.genres
+                //set genremap key for every genre in genresArray
+                for(let i = 0; i< genresArray.length;i++){
+                    if(genreMap.has(genresArray[i])){
+                        genreMap.set(genresArray[i], genreMap.get(genresArray[i])+1)
                     }else{
-                        artistString = artistsArray[0].name;
+                        genreMap.set(genresArray[i], 1);
                     }
                 }
-                // limit each string to 18 characters
-                artistString = artistString.substring(0,18);
-                // final product
-                finalArray.push(artistString);
+                // genresArray.push(indivName);
             }
-            setArtistData(finalArray);
+            const sortedMap = new Map([...genreMap.entries()].sort((a, b) => b[1] - a[1])); //sorts the map by value
+            let fullGenreArray = Array.from(sortedMap.keys()); //put all genre names into fullGenreArray
+            let fullGenrePercentArray = Array.from(sortedMap.values());
+            let topGenresArray = [];
+            //put top 8 genres into topGenresArray
+            for(let i = 0; i<8; i++){
+                let genreName = fullGenreArray[i].substring(0,18);
+                topGenresArray.push(genreName);                
+            }
+            let topGenresScoreArray = [];
+            //put top 8 genre scores into topGenresScoreArray
+            for(let i = 0; i<8; i++){
+                let indivPercent = (fullGenrePercentArray[i]/50) * 100;
+                topGenresScoreArray.push(indivPercent + "%");                
+            }
+            setClippedData(topGenresArray);
+            // getGenrePercentage(fullGenrePercentArray);
+            setPopScoreData(topGenresScoreArray);
+            setTotalScore("100%");
         }
+    
     
         /*
         * handleGetTopSongs was restricted to being called when mount changes
@@ -141,14 +122,14 @@ const GetTopGenres = (termProp) => {
                     <p id="songName-item">{clippedData[7]}</p>  
                 </div>
                 <div id="popScore-view">
-                    <p id="popScore-item">{popScoreData[7]}</p>
-                    <p id="popScore-item">{popScoreData[6]}</p>
-                    <p id="popScore-item">{popScoreData[5]}</p>
-                    <p id="popScore-item">{popScoreData[4]}</p>
-                    <p id="popScore-item">{popScoreData[3]}</p>
-                    <p id="popScore-item">{popScoreData[2]}</p>
-                    <p id="popScore-item">{popScoreData[1]}</p>
                     <p id="popScore-item">{popScoreData[0]}</p>
+                    <p id="popScore-item">{popScoreData[1]}</p>
+                    <p id="popScore-item">{popScoreData[2]}</p>
+                    <p id="popScore-item">{popScoreData[3]}</p>
+                    <p id="popScore-item">{popScoreData[4]}</p>
+                    <p id="popScore-item">{popScoreData[5]}</p>
+                    <p id="popScore-item">{popScoreData[6]}</p>
+                    <p id="popScore-item">{popScoreData[7]}</p>
                 </div>
                 <p id="total-text">TOTAL : {totalScore}</p>
             </>

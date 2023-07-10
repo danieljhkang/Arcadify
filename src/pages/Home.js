@@ -7,7 +7,7 @@ import machineTemplate from "../assets/arcadifyMachine.svg";
 import leftArrow from "../assets/leftArrow.png";
 import rightArrow from "../assets/rightArrow.png";
 import GetTopArtists from '../components/GetTopArtists';
-import GetTopGenres from '../components/GetTopArtists';
+import GetTopGenres from '../components/GetTopGenres';
 
 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -62,7 +62,6 @@ const Home = () => {
         }else{
             setIsLoggedIn(false);
         }
-        console.log("home : " + localStorage.getItem("accessToken"));
         }
     });
 
@@ -177,6 +176,7 @@ const Home = () => {
             <div id="captureArea">
                 { isLoggedIn && currentSubject === "top_tracks" && (<GetTopSongs termProp = {{curTerm: {currentTerm}, termText: {termText}}} />)}
                 { isLoggedIn && currentSubject === "top_artists" && (<GetTopArtists termProp = {{curTerm: {currentTerm}, termText: {termText}}} />)}
+                { isLoggedIn && currentSubject === "top_genres" && (<GetTopGenres termProp = {{curTerm: {currentTerm}, termText: {termText}}} />)}
                 { isLoggedIn && (<GetUsername />)}
                 { isLoggedIn && (<img className="machineTemplate"src={machineTemplate} alt="arcadeMachine"/>)}
             </div>

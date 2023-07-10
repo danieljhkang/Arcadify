@@ -14,7 +14,6 @@ const GetTopArtists = (termProp) => {
     // const [data, setData] = useState({}); //this data is from spotify
     const [mount, setMount] = useState(false); //boolean to control the number of calls
     const [clippedData, setClippedData] = useState([]);
-    const [artistData, setArtistData] = useState([]);
     const [popScoreData, setPopScoreData] = useState([])
     const [totalScore, setTotalScore] = useState(0);
 ;
@@ -25,8 +24,6 @@ const GetTopArtists = (termProp) => {
     useEffect(() => {
         if (localStorage.getItem("accessToken")) {
             setToken(localStorage.getItem("accessToken"));
-            //THIS IS WHERE THE STARTUP PROBLEM IS, ITS SETTING TO THE WRONG ONE
-            console.log("TopSong Token : " + localStorage.getItem("accessToken"));
         }
         setMount(!mount);
     }, []); //empty dependencies array = only runs once when app is opened
@@ -46,7 +43,6 @@ const GetTopArtists = (termProp) => {
             itemArray = response.data.items;
             handleGetPopScore();
             titleCharacterLimiter();
-            handleGetArtistNames();
         })
         .catch((error) => {
             console.log(error);
@@ -54,7 +50,7 @@ const GetTopArtists = (termProp) => {
     };
 
     /*
-    Gets popularity score of each song...BUT SPOTIFY API SAY NOOOOO
+    Gets popularity score of each artist...BUT SPOTIFY API SAY NOOOOO
     */
     const handleGetPopScore = () => {
         let popScoreArray = []; 
@@ -71,6 +67,7 @@ const GetTopArtists = (termProp) => {
 
     /*
     * Takes object received from response.data then limits the track title to 18 characters
+    * In this case, it would be the name of the artists
     */
     const titleCharacterLimiter = () => {
         let titleArray = [];
@@ -81,31 +78,6 @@ const GetTopArtists = (termProp) => {
             titleArray.push(indivName);
         }
         setClippedData(titleArray);
-    }
-
-    //item array[8] -> artists array[x]
-    const handleGetArtistNames = () => {
-        let finalArray = [];
-        for(let i = 0; i < 8; i++){
-            let indivData = itemArray[i];
-            let artistsArray = indivData.artists; //array containing every artist on song
-            //put every artist name in a single string
-            let artistString;
-            for(let i = 0; i< artistsArray.length;i++){
-                if(i!==0){
-                    //add a comma
-                    artistString += ", ";
-                    artistString += artistsArray[i].name;
-                }else{
-                    artistString = artistsArray[0].name;
-                }
-            }
-            // limit each string to 18 characters
-            artistString = artistString.substring(0,18);
-            // final product
-            finalArray.push(artistString);
-        }
-        setArtistData(finalArray);
     }
 
     /*
