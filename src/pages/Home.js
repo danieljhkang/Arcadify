@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { saveAs } from 'file-saver';
 import domtoimage from 'dom-to-image';
-import GetTopSongs from "../components/GetTopSongs";
-import GetUsername from "../components/GetUsername";
 import machineTemplate from "../assets/arcadifyMachine.svg";
 import leftArrow from "../assets/leftArrow.png";
 import rightArrow from "../assets/rightArrow.png";
+import GetTopSongs from "../components/GetTopSongs";
 import GetTopArtists from '../components/GetTopArtists';
 import GetTopGenres from '../components/GetTopGenres';
+import GetUserStats from '../components/GetUserStats';
 
 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -177,7 +177,7 @@ const Home = () => {
                 { isLoggedIn && currentSubject === "top_tracks" && (<GetTopSongs termProp = {{curTerm: {currentTerm}, termText: {termText}}} />)}
                 { isLoggedIn && currentSubject === "top_artists" && (<GetTopArtists termProp = {{curTerm: {currentTerm}, termText: {termText}}} />)}
                 { isLoggedIn && currentSubject === "top_genres" && (<GetTopGenres termProp = {{curTerm: {currentTerm}, termText: {termText}}} />)}
-                { isLoggedIn && (<GetUsername />)}
+                { isLoggedIn && currentSubject === "user_stats" && (<GetUserStats termProp = {{curTerm: {currentTerm}, termText: {termText}}} />)}
                 { isLoggedIn && (<img className="machineTemplate"src={machineTemplate} alt="arcadeMachine"/>)}
             </div>
             

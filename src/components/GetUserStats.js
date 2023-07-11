@@ -1,8 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import GetUsername from "./GetUsername";
 
-const GetUsername = () => {
+const GetUserStats = () => {
     const USER_ENDPOINT = "https://api.spotify.com/v1/me";
 
     const [token, setToken] = useState('');
@@ -103,22 +104,16 @@ const GetUsername = () => {
         }
     }, [mount]);
 
-
-    return (
-        <>
-            <p id = "dayTag">DAY</p>
-            <p id = "monthTag">MONTH</p>
-            <p id = "yearTag">YEAR</p>
-            <p id = "dayVal">{day}</p>
-            <p id = "monthVal">{month}</p>
-            <p id = "yearVal">{year}</p>
-            <p id = "userName">{userName}</p>  
-            <p id = "userName2">{userName2}</p>  
-        </>
-        
-    )
-
+    return (<>
+        <p id = "dayTag">DAY</p>
+        <p id = "monthTag">MONTH</p>
+        <p id = "yearTag">YEAR</p>
+        <p id = "dayVal">{day}</p>
+        <p id = "monthVal">{month}</p>
+        <p id = "yearVal">{year}</p>
+        <p id = "userStatName">{userName}</p>  
+        <p id = "userStatName2">{userName2}</p>  
+    </>)
 }
 
-
-export default GetUsername;
+export default GetUserStats;

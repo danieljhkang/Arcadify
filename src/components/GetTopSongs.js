@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import GetUsername from "./GetUsername";
 
 const GetTopSongs = (termProp) => {
     //term can be "short_term", "medium_term", or "long_term"
@@ -161,6 +161,7 @@ const GetTopSongs = (termProp) => {
                 <p id="popScore-item">{popScoreData[1]}</p>
                 <p id="popScore-item">{popScoreData[0]}</p>
             </div>
+            <GetUsername />
             <p id="total-text">TOTAL : {totalScore}</p>
         </>
     )

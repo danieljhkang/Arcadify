@@ -252,6 +252,28 @@ h2 {
     font-family: arcade;
 }
 
+#userStatName {
+    /* margin-left: 146px;
+    margin-right: 146px; */
+    color: #da3334;
+    position: absolute;
+    top: 689.5px;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    font-family: arcade;
+}
+
+#userStatName2 {
+    color: #da3334;
+    position: absolute;
+    top: 709px;
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    font-family: arcade;
+}
+
 #total-text {
     color: #575ff7;
     position: absolute;
