@@ -215,6 +215,10 @@ const GetUserStats = (termProp) => {
         setYear(current.getFullYear());
     }
 
+    const openProfile = (link) => {
+        window.open(link);
+    }
+
     /*
     * handleGetUsername was restricted to being called when mount changes
     * Due to being called too early which lead to 2 total calls, the first being a 400 error

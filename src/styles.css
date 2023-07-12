@@ -39,25 +39,14 @@ h2 {
     margin: 30px;
 }
 
-.leftArrow {
+.arrow {
     background-color: transparent;
     height: 50px;
     padding: 0px;
     border-color: transparent;
 }
 
-.leftArrowImg {
-    height: 50px;
-}
-
-.rightArrow {
-    background-color: transparent;
-    height: 50px;
-    padding: 0px;
-    border-color: transparent;
-}
-
-.rightArrowImg {
+.arrowImg {
     height: 50px;
 }
 

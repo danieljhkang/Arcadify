@@ -3,6 +3,8 @@ import html2canvas from 'html2canvas';
 import machineTemplate from "../assets/arcadifyMachine.png";
 import leftArrow from "../assets/leftArrow.png";
 import rightArrow from "../assets/rightArrow.png";
+import downArrow from "../assets/downArrow.png";
+import upArrow from "../assets/upArrow.png";
 import GetTopSongs from "../components/GetTopSongs";
 import GetTopArtists from '../components/GetTopArtists';
 import GetTopGenres from '../components/GetTopGenres';
@@ -87,20 +89,6 @@ const Home = () => {
            },2000);    
     };
 
-    function hiddenClone(element) {
-        // Create clone of element
-        var clone = element.cloneNode(true);
-    
-        // Position element relatively within the
-        // body but still out of the viewport
-        var style = clone.style;
-        style.position = "relative";
-        style.top = window.innerHeight + "px";
-        style.left = 0;
-        // Append clone to body and return the clone
-        document.body.appendChild(clone);
-        return clone;
-      }
 
     const handleDownload = (event) => {
         // domtoimage.toBlob(document.getElementById('captureArea'))
@@ -212,16 +200,16 @@ const Home = () => {
             { !isLoggedIn && ( <button onClick={handleLogin} className="spotifyButton"><span>Spotify Login</span></button> )}
             { isLoggedIn &&
                 <div id="selectorArea1">
-                <button className="leftArrow" onClick={handleSetSubjectLeft}><img className="leftArrowImg"src={leftArrow} alt="leftArrow"></img></button>
+                <button className="arrow" onClick={handleSetSubjectLeft}><img className="arrowImg"src={leftArrow} alt="leftArrow"></img></button>
                 <p id="selectionText">{subjectText}</p>
-                <button className= "rightArrow" onClick={handleSetSubjectRight}><img className="rightArrowImg"src={rightArrow}alt="rightArrow"></img></button>
+                <button className= "arrow" onClick={handleSetSubjectRight}><img className="arrowImg"src={rightArrow}alt="rightArrow"></img></button>
             </div>
             }
             { isLoggedIn &&
                 <div id="selectorArea2">
-                <button className="leftArrow" onClick={handleSetTermLeft}><img className="leftArrowImg"src={leftArrow}alt="leftArrow"></img></button>
+                <button className="arrow" onClick={handleSetTermLeft}><img className="arrowImg"src={leftArrow}alt="leftArrow"></img></button>
                 <p id="selectionText">{termText}</p>
-                <button className= "rightArrow" onClick={handleSetTermRight}><img className="rightArrowImg"src={rightArrow}alt="rightArrow"></img></button>
+                <button className= "arrow" onClick={handleSetTermRight}><img className="arrowImg"src={rightArrow}alt="rightArrow"></img></button>
             </div>
             }
             <div id="captureArea">
@@ -235,9 +223,17 @@ const Home = () => {
             <br/>
             { isLoggedIn && 
                 (<button className="spotifyButton" onClick={handleDownload} >Download Image</button>)}
-            <br/>
             { isLoggedIn && 
             (<button className="spotifyButton" role="link" onClick={()=> handleLogout("https://accounts.spotify.com/en/logout")}>Log Out</button>)}
+            <br/>
+            {isLoggedIn && 
+                (<div>
+                    <p id="selectionText">CLICK ARROW TO EXTEND</p>
+                    <br/>
+                    <button className="arrow" ><img className="arrowImg"src={downArrow}alt="downArrow"></img></button>
+                </div>
+                
+                )}
         </>
     )
 }
