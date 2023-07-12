@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { saveAs } from 'file-saver';
-import domtoimage from 'dom-to-image';
-import machineTemplate from "../assets/arcadifyMachine.svg";
+import html2canvas from 'html2canvas';
+import machineTemplate from "../assets/arcadifyMachine.png";
 import leftArrow from "../assets/leftArrow.png";
 import rightArrow from "../assets/rightArrow.png";
 import GetTopSongs from "../components/GetTopSongs";
@@ -88,11 +87,63 @@ const Home = () => {
            },2000);    
     };
 
-    const handleDownload = () => {
-        domtoimage.toBlob(document.getElementById('captureArea'))
-        .then(function (blob) {
-            window.saveAs(blob, 'arcadify.png');
-        });
+    function hiddenClone(element) {
+        // Create clone of element
+        var clone = element.cloneNode(true);
+    
+        // Position element relatively within the
+        // body but still out of the viewport
+        var style = clone.style;
+        style.position = "relative";
+        style.top = window.innerHeight + "px";
+        style.left = 0;
+        // Append clone to body and return the clone
+        document.body.appendChild(clone);
+        return clone;
+      }
+
+    const handleDownload = (event) => {
+        // domtoimage.toBlob(document.getElementById('captureArea'))
+        // .then(function (blob) {
+        //     window.saveAs(blob, 'arcadify.png');
+        // });
+        
+        // domtoimage.toJpeg(document.getElementById('captureArea'), { quality: 1 })
+        // .then(function (dataUrl) {
+        //     var link = document.createElement('a');
+        //     link.download = 'poop.jpeg';
+        //     link.href = dataUrl;
+        //     link.click();
+        // });
+
+        // html2canvas(document.querySelector("#captureArea")).then(canvas => {
+        //     canvas.toBlob(function(blob) {
+        //         // Generate file download
+        //         window.saveAs(blob, "arcadify.png");
+        //     });
+        // });
+
+        // Select the <body> element to capture full page.
+        html2canvas(document.querySelector('#captureArea'),{
+            allowTaint: true,
+            useCORS: true,
+            scrollX: -window.scrollX,
+            scrollY: -window.scrollY,
+            windowWidth: document.documentElement.offsetWidth,
+            windowHeight: document.documentElement.offsetHeight
+        }).then(canvas => {
+                canvas.style.display = 'none'
+                document.body.appendChild(canvas)
+                return canvas
+            })
+            .then(canvas => {
+                const image = canvas.toDataURL('image/png')
+                const a = document.createElement('a')
+                a.setAttribute('download', 'my-image.png')
+                a.setAttribute('href', image)
+                a.click()
+                canvas.remove()
+            })
     }
 
     const handleSetSubjectLeft = () => {

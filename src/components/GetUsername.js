@@ -46,7 +46,7 @@ const GetUsername = () => {
     //first line can only by 16 characters
     const formatUserName = (string) => {
         let line1 = string;
-        if(string.length>16){
+        if(string.length>15){
             line1 = line1.substring(0,15);
             setUserName2(nameTooLong(line1.substring(15,30)));
         }else{
@@ -56,7 +56,7 @@ const GetUsername = () => {
         return line1;
     }
 
-    //when the username is longer than 16 characters
+    //when the username is longer than 15 characters
     //spotify username limit is 30 characters
     const nameTooLong = (isTooLong) => {
         let line2;

@@ -7,7 +7,7 @@ const GetTopArtists = (termProp) => {
     //term can be "short_term", "medium_term", or "long_term"
     const TERM = termProp.termProp.curTerm.currentTerm;
     const termDisplay = termProp.termProp.termText.termText;
-    const SONGS_ENDPOINT = `https://api.spotify.com/v1/me/top/artists?limit=8&time_range=${TERM}`; // endpoint = api?, Route to get information from
+    const ARTISTS_ENDPOINT = `https://api.spotify.com/v1/me/top/artists?limit=8&time_range=${TERM}`; // endpoint = api?, Route to get information from
 
 
     const [token, setToken] = useState('');
@@ -34,7 +34,7 @@ const GetTopArtists = (termProp) => {
     * Sets the data as the response that is received
     */
     const handleGetTopArtists = () => {
-        axios.get(SONGS_ENDPOINT, {
+        axios.get(ARTISTS_ENDPOINT, {
         headers: {
             Authorization: "Bearer " + token,
         }

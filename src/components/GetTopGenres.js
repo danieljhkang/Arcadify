@@ -16,7 +16,7 @@ const GetTopGenres = (termProp) => {
         const [clippedData, setClippedData] = useState([]);
         const [popScoreData, setPopScoreData] = useState([])
         const [totalScore, setTotalScore] = useState(0);
-    ;
+    
         /*
         * Runs only on the first render
         * Sets token to the accessToken received from localStorage
