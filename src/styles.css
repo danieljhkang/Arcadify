@@ -169,6 +169,17 @@ h2 {
     margin-bottom: 39px;
 }
 
+#artist-item2 {
+    color: white;
+    text-align: left;
+    font-size: 13px;
+    font-family: arcade;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
 #leaderboard-view {
     color: #da3334;
     position: absolute;
@@ -201,6 +212,17 @@ h2 {
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 39px;
+}
+
+#songName-item2 {
+    color: #f9de54;
+    text-align: left;
+    font-size: 13px;
+    font-family: arcade;
+    margin-top: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
 }
 
 #popScore-view {
@@ -392,6 +414,12 @@ h2 {
     width: 530px;
     /* display: relative; */
     position: relative;
+}
+
+#dynamicTags {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
 }
 
 /* NAV BAR */

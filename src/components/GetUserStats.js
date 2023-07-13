@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import GetUsername from "./GetUsername";
-import GetArtist from "./GetArtist";
 
 const GetUserStats = (termProp) => {
     //term can be "short_term", "medium_term", or "long_term"
@@ -95,7 +94,7 @@ const GetUserStats = (termProp) => {
         await handleGetObscurity();
         await handleGetObscurity2();
 
-        let finalScore = ((await getPopArtist() + await getPopTrack())/1000).toFixed(2)
+        let finalScore = ((await getPopArtist() + await getPopTrack())/1000).toFixed(2);
         setMusicScore(finalScore);
     }
 

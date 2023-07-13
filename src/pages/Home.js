@@ -9,6 +9,10 @@ import GetTopSongs from "../components/GetTopSongs";
 import GetTopArtists from '../components/GetTopArtists';
 import GetTopGenres from '../components/GetTopGenres';
 import GetUserStats from '../components/GetUserStats';
+import GetTrackExtension from '../components/GetTrackExtension';
+import GetArtistExtension from '../components/GetArtistExtension';
+import GetGenreExtension from '../components/GetGenreExtension';
+import GetUserExtension from '../components/GetUserExtension';
 
 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -39,6 +43,8 @@ const Home = () => {
     
     const [currentSubject, setCurrentSubject] = useState("top_tracks");
     const [subjectText, setSubjectText] = useState("TOP TRACKS");
+
+    const [isExtended, setIsExtended] = useState(false);
     
     /*
     * takes spotify access token and sets them into localStorage
@@ -91,26 +97,6 @@ const Home = () => {
 
 
     const handleDownload = (event) => {
-        // domtoimage.toBlob(document.getElementById('captureArea'))
-        // .then(function (blob) {
-        //     window.saveAs(blob, 'arcadify.png');
-        // });
-        
-        // domtoimage.toJpeg(document.getElementById('captureArea'), { quality: 1 })
-        // .then(function (dataUrl) {
-        //     var link = document.createElement('a');
-        //     link.download = 'poop.jpeg';
-        //     link.href = dataUrl;
-        //     link.click();
-        // });
-
-        // html2canvas(document.querySelector("#captureArea")).then(canvas => {
-        //     canvas.toBlob(function(blob) {
-        //         // Generate file download
-        //         window.saveAs(blob, "arcadify.png");
-        //     });
-        // });
-
         // Select the <body> element to capture full page.
         html2canvas(document.querySelector('#captureArea'),{
             allowTaint: true,
@@ -127,7 +113,7 @@ const Home = () => {
             .then(canvas => {
                 const image = canvas.toDataURL('image/png')
                 const a = document.createElement('a')
-                a.setAttribute('download', 'my-image.png')
+                a.setAttribute('download', 'arcadify.png')
                 a.setAttribute('href', image)
                 a.click()
                 canvas.remove()
@@ -194,6 +180,11 @@ const Home = () => {
         localStorage.setItem("term", currentTerm);
     }
 
+    //will check off a boolean that allows the extension component to show
+    const handleExtend = () => {
+        setIsExtended(!isExtended);
+    }
+
     return(
         <>
             { !isLoggedIn && (<h1 className="homeText">Enter your favorite music arcade.</h1>)}
@@ -226,13 +217,51 @@ const Home = () => {
             { isLoggedIn && 
             (<button className="spotifyButton" role="link" onClick={()=> handleLogout("https://accounts.spotify.com/en/logout")}>Log Out</button>)}
             <br/>
-            {isLoggedIn && 
+            {isLoggedIn && !isExtended &&
                 (<div>
+                    <p id="selectionText">CURIOUS ABOUT THE REST?</p>
+                    <br/>
                     <p id="selectionText">CLICK ARROW TO EXTEND</p>
                     <br/>
-                    <button className="arrow" ><img className="arrowImg"src={downArrow}alt="downArrow"></img></button>
+                    <button className="arrow" onClick={handleExtend}><img className="arrowImg"src={downArrow}alt="downArrow"></img></button>
                 </div>
                 
+                )}
+            {isLoggedIn && isExtended && currentSubject === "top_tracks" &&
+                (<div>
+                    <GetTrackExtension termProp = {{curTerm: {currentTerm}, termText: {termText}}}/>
+                    <br/>
+                    <button className="arrow" onClick={handleExtend}><img className="arrowImg"src={upArrow}alt="upArrow"></img></button>
+                    <br/>
+                    <p id="selectionText">CLICK ARROW TO HIDE</p>
+                </div>
+                )}
+            {isLoggedIn && isExtended && currentSubject === "top_artists" &&
+                (<div>
+                    <GetArtistExtension termProp = {{curTerm: {currentTerm}, termText: {termText}}}/>
+                    <br/>
+                    <button className="arrow" onClick={handleExtend}><img className="arrowImg"src={upArrow}alt="upArrow"></img></button>
+                    <br/>
+                    <p id="selectionText">CLICK ARROW TO HIDE</p>
+                </div>
+                )}
+            {isLoggedIn && isExtended && currentSubject === "top_genres" &&
+                (<div>
+                    <GetGenreExtension termProp = {{curTerm: {currentTerm}, termText: {termText}}}/>
+                    <br/>
+                    <button className="arrow" onClick={handleExtend}><img className="arrowImg"src={upArrow}alt="upArrow"></img></button>
+                    <br/>
+                    <p id="selectionText">CLICK ARROW TO HIDE</p>
+                </div>
+                )}
+            {isLoggedIn && isExtended && currentSubject === "user_stats" &&
+                (<div>
+                    <GetUserExtension termProp = {{curTerm: {currentTerm}, termText: {termText}}}/>
+                    <br/>
+                    <button className="arrow" onClick={handleExtend}><img className="arrowImg"src={upArrow}alt="upArrow"></img></button>
+                    <br/>
+                    <p id="selectionText">CLICK ARROW TO HIDE</p>
+                </div>
                 )}
         </>
     )

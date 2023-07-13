@@ -90,7 +90,7 @@ const GetTopSongs = (termProp) => {
             //put every artist name in a single string
             let artistString;
             for(let i = 0; i< artistsArray.length;i++){
-                if(i!=0){
+                if(i!==0){
                     //add a comma
                     artistString += ", ";
                     artistString += artistsArray[i].name;
