@@ -5,7 +5,10 @@ const About = () => {
         <p className="about-text">
             Arcadify is an open source program that creates an arcade graphic
             based on your most listened Spotify songs, artists, and genres.
-            Inspired by Receiptify. 
+        </p>
+
+        <p className="about-text">
+            Inspired by <a className="contact-link" href="https://receiptify.herokuapp.com/">Receiptify.</a>
         </p>
 
         <h2>How are the scores calculated?</h2>

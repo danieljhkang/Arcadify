@@ -571,8 +571,11 @@ h2 {
     display: inline-block;
     position: relative;
     text-align: center;
+    margin-top: 20px;
     margin: 2px;
     color: white;
+    font-size: 12px;
+    font-family: arcade;
 }
 
 .nameLink {
@@ -580,8 +583,11 @@ h2 {
     position: relative;
     text-align: center;
     margin: 2px;
+    margin-top: 20px;
     text-decoration: none;
     color: #24e68e;
+    font-size: 12px;
+    font-family: arcade;
 }
 
 .contact-link {
