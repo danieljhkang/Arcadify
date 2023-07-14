@@ -63,7 +63,7 @@ const GetTrackExtension = (termProp) => {
             //put every artist name in a single string
             let artistString;
             for(let i = 0; i< artistsArray.length;i++){
-                if(i!=0){
+                if(i!==0){
                     //add a comma
                     artistString += ", ";
                     artistString += artistsArray[i].name;
@@ -83,16 +83,16 @@ const GetTrackExtension = (termProp) => {
     const createDynamicTags = () => {
         deleteDynamicTags();
         for(let i = 49;i>7;i--){
-            if(i==8){
+            if(i===8){
                 var p2 = `<p id="artist-item2">&nbsp&nbsp&nbsp&nbsp${artistData[i]}</p>`;
                 document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p2);
                 var p = `<p id="songName-item2">${i+1}.&nbsp&nbsp${clippedData[i]}</p>`;
                 document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p);
             }else{
-                var p2 = `<p id="artist-item2">&nbsp&nbsp&nbsp&nbsp${artistData[i]}</p>`;
-                document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p2);
-                var p = `<p id="songName-item2">${i+1}.&nbsp${clippedData[i]}</p>`;
-                document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p);
+                var p3 = `<p id="artist-item2">&nbsp&nbsp&nbsp&nbsp${artistData[i]}</p>`;
+                document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p3);
+                var p4 = `<p id="songName-item2">${i+1}.&nbsp${clippedData[i]}</p>`;
+                document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p4);
             }
         }
     }

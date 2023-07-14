@@ -4,7 +4,6 @@ import axios from "axios";
 
 const GetUserExtension = (termProp) => {
     const TERM = termProp.termProp.curTerm.currentTerm;
-    const USER_ENDPOINT = "https://api.spotify.com/v1/me";
     const ARTISTS_ENDPOINT = `https://api.spotify.com/v1/me/top/artists?limit=50&time_range=${TERM}`; // endpoint = api?, Route to get information from
     const TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=${TERM}`; // endpoint = api?, Route to get information from
     
@@ -12,7 +11,6 @@ const GetUserExtension = (termProp) => {
     // const [data, setData] = useState({}); //this data is from spotify
     const [mount, setMount] = useState(false); //boolean to control the number of calls
     const [mount2, setMount2] = useState(false);
-    const [clippedData, setClippedData] = useState([]);
 
     const [popArtists, setPopArtists] = useState([]);
     const [obsArtists, setObsArtists] = useState([]);

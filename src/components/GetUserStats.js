@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import GetUsername from "./GetUsername";
 
 const GetUserStats = (termProp) => {
     //term can be "short_term", "medium_term", or "long_term"
@@ -182,7 +181,7 @@ const GetUserStats = (termProp) => {
     //spotify username limit is 30 characters
     const nameTooLong = (isTooLong) => {
         let line2;
-        if(isTooLong = " "){
+        if(isTooLong === " "){
             line2 = "---"
         }else{
             line2 = isTooLong;
@@ -214,10 +213,6 @@ const GetUserStats = (termProp) => {
         setYear(current.getFullYear());
     }
 
-    const openProfile = (link) => {
-        window.open(link);
-    }
-
     /*
     * handleGetUsername was restricted to being called when mount changes
     * Due to being called too early which lead to 2 total calls, the first being a 400 error
@@ -237,7 +232,7 @@ const GetUserStats = (termProp) => {
 
     return (<>
         <p id="termDisplay">{termDisplay}</p>
-        <img id="prof-image" src={profImgURL}></img>
+        <img id="prof-image" src={profImgURL} alt ="user profile"></img>
         <p id = "countryName">{countryName}</p>
         <p id = "dayTag">DAY</p>
         <p id = "monthTag">MONTH</p>
@@ -247,10 +242,10 @@ const GetUserStats = (termProp) => {
         <p id = "yearVal">{year}</p>
         <p id = "userStatName">{userName}</p>  
         <p id = "userStatName2">{userName2}</p>  
-        <img id="popArtImg" src={popArtURL}></img>
-        <img id="obsArtImg" src={obsArtURL}></img>
-        <img id="popTrkImg" src={popTrackURL}></img>
-        <img id="obsTrkImg" src={obsTrackURL}></img>
+        <img id="popArtImg" src={popArtURL} alt="popular artist"></img>
+        <img id="obsArtImg" src={obsArtURL} alt="obscure artist"></img>
+        <img id="popTrkImg" src={popTrackURL} alt="popular track"></img>
+        <img id="obsTrkImg" src={obsTrackURL} alt="obscure track"></img>
         <p id="obs_score">{musicScore}/10</p>
 
         <p id = "userStatTitle1">MUSIC OBSCURITY</p>

@@ -70,7 +70,7 @@ const Home = () => {
             setIsLoggedIn(false);
         }
         }
-    });
+    },[]);
 
     useEffect(()=>{
         localStorage.setItem("term", currentTerm);

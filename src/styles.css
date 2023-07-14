@@ -455,6 +455,7 @@ h2 {
 .nav li {
     display: inline;
     border-radius: 5px;
+    font-family: Clarkson, Helvetica, sans-serif;
 }
 
 .nav a {
