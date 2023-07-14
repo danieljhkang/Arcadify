@@ -17,12 +17,13 @@ const GetUsername = () => {
     * Runs only on the first render
     * Sets token to the accessToken received from localStorage
     */
+   /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
         if (localStorage.getItem("accessToken")) {
             setToken(localStorage.getItem("accessToken"));
         }
         setMount(!mount);
-    }, []);
+    }, []); 
 
     /*
     * Axios API call to spotify API using the access token
@@ -60,7 +61,7 @@ const GetUsername = () => {
     //spotify username limit is 30 characters
     const nameTooLong = (isTooLong) => {
         let line2;
-        if(isTooLong = " "){
+        if(isTooLong === " "){
             line2 = "---------------"
         }else{
             line2 = isTooLong;

@@ -21,12 +21,14 @@ const GetTopGenres = (termProp) => {
         * Runs only on the first render
         * Sets token to the accessToken received from localStorage
         */
+       /* eslint-disable react-hooks/exhaustive-deps */
         useEffect(() => {
             if (localStorage.getItem("accessToken")) {
                 setToken(localStorage.getItem("accessToken"));
             }
             setMount(!mount);
-        }, []); //empty dependencies array = only runs once when app is opened
+        }, []); 
+        //empty dependencies array = only runs once when app is opened
        
         let itemArray;
         /*

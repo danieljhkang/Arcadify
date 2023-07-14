@@ -10,7 +10,23 @@ const About = () => {
 
         <h2>How are the scores calculated?</h2>
         <p className="about-text">
-            In many ways...
+            The scores for individual artists and tracks have less significance 
+            than other components in Arcadify. They are calculated through an algorithm
+            that makes sure that it matches up logically with the standings of the top
+            items but it also mixes in its popularity points with it.
+        </p>
+        <br/>
+        <p className="about-text">
+            TLDR; I wish I could do something cool with it but because of limiting factors
+            in Spotify's API, it really doesn't mean anything.
+        </p>
+
+        <h2>What is music obscurity and what determines its score (in the user stats)?</h2>
+        <p className="about-text">
+            Music obscurity is how unknown the artist or track is. The more underground
+            the artist or track is, the higher their music obscurity points will be. The
+            standards for obscurity or popularity is determined by Spotify and this 
+            application is just using that data throught the Spotify API.
         </p>
 
         <h2>Are you stealing my data?</h2>

@@ -31,6 +31,7 @@ const GetUserStats = (termProp) => {
     * Runs only on the first render
     * Sets token to the accessToken received from localStorage
     */
+    /* eslint-disable react-hooks/exhaustive-deps */
     useEffect(() => {
         if (localStorage.getItem("accessToken")) {
             setToken(localStorage.getItem("accessToken"));
@@ -93,7 +94,7 @@ const GetUserStats = (termProp) => {
         await handleGetObscurity();
         await handleGetObscurity2();
 
-        let finalScore = ((await getPopArtist() + await getPopTrack())/1000).toFixed(2);
+        let finalScore = (10-((await getPopArtist() + await getPopTrack())/1000)).toFixed(2);
         setMusicScore(finalScore);
     }
 

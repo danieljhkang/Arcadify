@@ -584,6 +584,14 @@ h2 {
     color: #24e68e;
 }
 
+.contact-link {
+    color: white;
+    font-size: 18px;
+    font-family: "Helvetica Neue", sans-serif;
+    text-decoration: none;
+    color: #24e68e;
+}
+
 .spotifyLogo {
     width: 10%;
     display: block;
