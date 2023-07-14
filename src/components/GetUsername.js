@@ -69,6 +69,9 @@ const GetUsername = () => {
         return line2;
     }
     
+    /*
+    * Gets today's dates
+    */
     const getDates = () => {
         const current = new Date();
         let finalMonth;

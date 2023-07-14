@@ -96,6 +96,9 @@ const Home = () => {
     };
 
 
+    /*
+    * Takes the #captureArea container, produces a png image, then downloads it
+    */
     const handleDownload = (event) => {
         // Select the <body> element to capture full page.
         html2canvas(document.querySelector('#captureArea'),{
@@ -119,7 +122,10 @@ const Home = () => {
                 canvas.remove()
             })
     }
-
+    
+    /*
+    * Moves the subject option to the left
+    */
     const handleSetSubjectLeft = () => {
         if(currentSubject === "top_tracks"){
             setCurrentSubject("user_stats");
@@ -136,6 +142,9 @@ const Home = () => {
         }
     }
 
+    /*
+    * Moves the subject option to the right
+    */
     const handleSetSubjectRight = () => {
         if(currentSubject === "top_tracks"){
             setCurrentSubject("top_artists");
@@ -152,6 +161,9 @@ const Home = () => {
         }
     }
 
+    /*
+    * Moves the term option to the left
+    */
     const handleSetTermLeft = () => {
         if(currentTerm === "short_term"){
             setCurrentTerm("long_term");
@@ -166,6 +178,9 @@ const Home = () => {
         localStorage.setItem("term", currentTerm);
     }
 
+    /*
+    * Moves the term option to the right
+    */
     const handleSetTermRight = () => {
         if(currentTerm === "medium_term"){
             setCurrentTerm("long_term");

@@ -81,6 +81,9 @@ const GetTrackExtension = (termProp) => {
         setMount2(!mount2);
     }
 
+    /*
+    * Dynamically creates the extension p tags
+    */
     const createDynamicTags = () => {
         deleteDynamicTags();
         for(let i = 49;i>7;i--){

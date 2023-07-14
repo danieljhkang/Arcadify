@@ -61,6 +61,9 @@ const GetUserStats = (termProp) => {
     };
 
     let itemArray;
+    /*
+    * Gets the top 50 artists you've listened to, then runs getPopArtist() 
+    */
     const handleGetObscurity = async () => {
         await axios.get(ARTISTS_ENDPOINT, {
         headers: {
@@ -76,6 +79,9 @@ const GetUserStats = (termProp) => {
     }
 
     let itemArray2;
+    /*
+    * Gets the top 50 tracks you've listened to, then runs getPopTrack() 
+    */
     const handleGetObscurity2 = async () => {
         await axios.get(TRACKS_ENDPOINT, {
         headers: {
@@ -118,7 +124,7 @@ const GetUserStats = (termProp) => {
     }
 
     /*
-    * Gets the most popular and most underground artist's img
+    * Gets the top 50 artists, organizes by popularity
     */
     const getPopArtist = async() => {
         let artistMap = new Map();
@@ -141,7 +147,7 @@ const GetUserStats = (termProp) => {
     }
 
     /*
-    * Gets the most popular and most underground track's img
+    * Gets the top 50 tracks, organizes by popularity
     */
     const getPopTrack = async() => {
         let trackMap = new Map();
@@ -190,6 +196,9 @@ const GetUserStats = (termProp) => {
         return line2;
     }
     
+    /*
+    * Gets current date
+    */
     const getDates = () => {
         const current = new Date();
         let finalMonth;
@@ -225,6 +234,9 @@ const GetUserStats = (termProp) => {
         }
     }, [mount]);
 
+    /*
+    * Refreshes the obscurities by term
+    */
     useEffect(() => {
         if (mount){
             getObscurities();

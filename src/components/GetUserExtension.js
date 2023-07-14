@@ -104,6 +104,9 @@ const GetUserExtension = (termProp) => {
 
 
 
+    /*
+    * Dynamically creates the extension p tags
+    */
     const createDynamicTags = () => {
         deleteDynamicTags();
         for(let i = 45;i<obsTracks.length;i++){
