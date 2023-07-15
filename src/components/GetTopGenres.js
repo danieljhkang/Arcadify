@@ -114,15 +114,22 @@ const GetTopGenres = (termProp) => {
                     <p id="leaderboard-item">7TH</p>
                     <p id="leaderboard-item">8TH</p>
                 </div>
-                <div id="songName-view">
-                    <p id="songName-item">{clippedData[0]}</p>   
-                    <p id="songName-item">{clippedData[1]}</p>             
-                    <p id="songName-item">{clippedData[2]}</p> 
-                    <p id="songName-item">{clippedData[3]}</p> 
-                    <p id="songName-item">{clippedData[4]}</p> 
-                    <p id="songName-item">{clippedData[5]}</p> 
-                    <p id="songName-item">{clippedData[6]}</p>
-                    <p id="songName-item">{clippedData[7]}</p>  
+                <div id="main-view">
+                    <p id="artistOrGenreOnly-item">{clippedData[0]}</p>
+                    <br/>   
+                    <p id="artistOrGenreOnly-item">{clippedData[1]}</p>
+                    <br/>              
+                    <p id="artistOrGenreOnly-item">{clippedData[2]}</p> 
+                    <br/> 
+                    <p id="artistOrGenreOnly-item">{clippedData[3]}</p>
+                    <br/>  
+                    <p id="artistOrGenreOnly-item">{clippedData[4]}</p> 
+                    <br/> 
+                    <p id="artistOrGenreOnly-item">{clippedData[5]}</p> 
+                    <br/> 
+                    <p id="artistOrGenreOnly-item">{clippedData[6]}</p>
+                    <br/> 
+                    <p id="artistOrGenreOnly-item">{clippedData[7]}</p>  
                 </div>
                 <div id="popScore-view">
                     <p id="popScore-item">{popScoreData[0]}</p>

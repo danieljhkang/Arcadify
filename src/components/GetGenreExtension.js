@@ -70,11 +70,15 @@ const GetGenreExtension = (termProp) => {
         deleteDynamicTags();
         for(let i = clippedData.length-1;i>7;i--){
             if(i===8){
-                var p2 = `<p id="songName-item2">${i+1}.&nbsp&nbsp${clippedData[i]}</p>`;
+                var p2 = `<p id="songName-item3">${i+1}.&nbsp&nbsp${clippedData[i]}</p>`;
                 document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p2);
+                var b = "<br/>"
+                document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b);
             }else{
-                var p3 = `<p id="songName-item2">${i+1}.&nbsp${clippedData[i]}</p>`;
+                var p3 = `<p id="songName-item3">${i+1}.&nbsp${clippedData[i]}</p>`;
                 document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p3);
+                var b2 = "<br/>"
+                document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b2);
             }
         }
     }

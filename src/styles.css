@@ -66,7 +66,8 @@ h2 {
     position: relative;
     object-fit: contain;
     object-position: center;
-    width: 530px;
+    /* width: 530px; */
+    width: 340px;
     z-index: -10;
     display: block
         /* do not remove display: block, it removes the 3px padding on chrome */
@@ -75,118 +76,113 @@ h2 {
 #termDisplay {
     color: #da3334;
     position: absolute;
-    top: 201px;
+    top: 129px;
     text-align: center;
     width: 100%;
-    font-size: 12px;
+    font-size: 8px;
     font-family: arcade;
 }
 
 #dayTag {
     color: #f9de54;
     position: absolute;
-    top: 151px;
+    top: 96px;
     text-align: left;
-    right: 94px;
-    font-size: 13px;
+    right: 59px;
+    font-size: 9px;
     font-family: arcade;
 }
 
 #monthTag {
     color: #f9de54;
     position: absolute;
-    top: 151px;
-    text-align: left;
-    left: 234px;
-    font-size: 13px;
+    top: 96px;
+    text-align: center;
+    width: 100%;
+    font-size: 9px;
     font-family: arcade;
 }
 
 #yearTag {
     color: #f9de54;
     position: absolute;
-    top: 151px;
+    top: 96px;
     text-align: left;
-    left: 94px;
-    font-size: 13px;
+    left: 59px;
+    font-size: 9px;
     font-family: arcade;
 }
 
 #dayVal {
     color: white;
     position: absolute;
-    top: 168px;
+    top: 107px;
     text-align: left;
-    right: 94px;
-    font-size: 13px;
+    right: 59px;
+    font-size: 9px;
     font-family: arcade;
 }
 
 #monthVal {
     color: white;
     position: absolute;
-    top: 168px;
-    text-align: left;
-    left: 254px;
-    font-size: 13px;
+    top: 107px;
+    text-align: center;
+    width: 100%;
+    font-size: 9px;
     font-family: arcade;
 }
 
 #yearVal {
     color: white;
     position: absolute;
-    top: 168px;
+    top: 107px;
     text-align: left;
-    left: 94px;
-    font-size: 13px;
+    left: 59px;
+    font-size: 9px;
     font-family: arcade;
 }
 
 #hs-text {
     color: #da3334;
     position: absolute;
-    top: 222px;
-    text-align: left;
-    left: 173px;
-    font-size: 17px;
-    font-family: arcade;
-}
-
-#artist-view {
-    color: white;
-    position: absolute;
-    top: 291px;
-    text-align: left;
-    left: 144px;
-    font-size: 13px;
+    top: 144px;
+    text-align: center;
+    width: 100%;
+    font-size: 11px;
     font-family: arcade;
 }
 
 #artist-item {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-bottom: 39px;
+    margin-bottom: 13px;
+    z-index: 10;
 }
 
 #artist-item2 {
     color: white;
-    text-align: left;
+    display: inline-block;
+    text-decoration: none;
     font-size: 13px;
     font-family: arcade;
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 20px;
 }
 
 #leaderboard-view {
     color: #da3334;
     position: absolute;
-    top: 275px;
+    top: 176px;
     text-align: right;
-    left: 94px;
-    font-size: 13px;
+    left: 60px;
+    font-size: 8px;
     font-family: arcade;
 }
 
@@ -194,44 +190,70 @@ h2 {
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-bottom: 39px;
+    margin-bottom: 25px;
 }
 
-#songName-view {
-    color: #f9de54;
+#main-view {
     position: absolute;
-    top: 275px;
+    top: 176px;
     text-align: left;
-    left: 144px;
-    font-size: 13px;
+    left: 90px;
+    font-size: 9px;
     font-family: arcade;
 }
 
-#songName-item {
+#artistOrGenreOnly-item {
+    display: inline-block;
+    color: #f9de54;
+    text-decoration: none;
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-bottom: 39px;
+    margin-bottom: 24px;
 }
 
-#songName-item2 {
+#songName-item {
+    display: inline-block;
     color: #f9de54;
-    text-align: left;
-    font-size: 13px;
-    font-family: arcade;
-    margin-top: 20px;
+    text-decoration: none;
+    margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 0px;
 }
 
+#songName-item2 {
+    color: #f9de54;
+    text-decoration: none;
+    text-align: left;
+    font-size: 13px;
+    font-family: arcade;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
+#songName-item3 {
+    color: #f9de54;
+    display: inline-block;
+    text-decoration: none;
+    text-align: left;
+    font-size: 13px;
+    font-family: arcade;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+}
+
 #popScore-view {
     color: #575ff7;
     position: absolute;
-    top: 275px;
+    top: 176px;
     text-align: left;
-    right: 96px;
-    font-size: 13px;
+    right: 60px;
+    font-size: 9px;
     font-family: arcade;
 }
 
@@ -239,171 +261,175 @@ h2 {
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-bottom: 39px;
+    margin-bottom: 24px;
+}
+
+#userNameView {
+    margin: 0px;
+    width: 100%;
+    position: absolute;
+    top: 451px;
+    text-align: center;
+    font-size: 10px;
+    font-family: arcade;
 }
 
 #userName {
-    /* margin-left: 146px;
-    margin-right: 146px; */
     color: #da3334;
-    position: absolute;
-    top: 689.5px;
-    text-align: center;
-    width: 100%;
-    font-size: 16px;
-    font-family: arcade;
+    text-decoration: none;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
 }
 
 #userName2 {
     color: #da3334;
-    position: absolute;
-    top: 709px;
-    text-align: center;
-    width: 100%;
-    font-size: 16px;
-    font-family: arcade;
+    text-decoration: none;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
 }
 
 #userStatName {
     color: #575ff7;
     position: absolute;
-    top: 230px;
+    top: 148px;
     text-align: center;
-    left: 204px;
-    font-size: 16px;
+    left: 131px;
+    font-size: 10.3px;
     font-family: arcade;
 }
-
-/* diff is 9.5px */
 
 #userStatName2 {
     color: #575ff7;
     position: absolute;
-    top: 250px;
+    top: 161px;
     text-align: center;
-    left: 204px;
-    font-size: 16px;
+    left: 131px;
+    font-size: 10.3px;
     font-family: arcade;
 }
 
 #countryName {
     color: white;
     position: absolute;
-    top: 280px;
+    top: 179px;
     text-align: center;
-    left: 204px;
-    font-size: 13px;
+    left: 131px;
+    font-size: 9px;
     font-family: arcade;
 }
 
 #userStatTitle1 {
     color: red;
     position: absolute;
-    top: 315px;
+    top: 202px;
     text-align: center;
     width: 100%;
-    font-size: 15px;
+    font-size: 10px;
     font-family: arcade;
 }
 
 #userStatTitle2 {
     color: red;
     position: absolute;
-    top: 394px;
+    top: 253px;
     text-align: center;
     left: 25%;
-    font-size: 14px;
+    font-size: 9px;
     font-family: arcade;
 }
 
 #userStatTitle3 {
     color: red;
     position: absolute;
-    top: 394px;
+    top: 253px;
     text-align: center;
-    right: 100px;
-    font-size: 14px;
+    right: 64px;
+    font-size: 9px;
     font-family: arcade;
 }
 
 #userStatTitle4 {
     color: red;
     position: absolute;
-    top: 568px;
+    top: 364px;
     text-align: center;
     left: 25%;
-    font-size: 14px;
+    font-size: 9px;
     font-family: arcade;
 }
 
 #userStatTitle5 {
     color: red;
     position: absolute;
-    top: 568px;
+    top: 364px;
     text-align: center;
-    right: 100px;
-    font-size: 14px;
+    right: 64px;
+    font-size: 9px;
     font-family: arcade;
 }
 
 #prof-image {
     position: absolute;
-    left: 107px;
-    top: 235px;
-    width: 85px;
-    height: 85px;
+    left: 68px;
+    top: 150px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
 }
 
 #popArtImg {
     position: absolute;
-    left: 128px;
-    top: 464px;
-    width: 102px;
-    height: 102px;
+    left: 83px;
+    top: 298px;
+    width: 66px;
+    height: 66px;
 }
 
 #obsArtImg {
     position: absolute;
-    right: 128px;
-    top: 464px;
-    width: 102px;
-    height: 102px;
+    right: 82px;
+    top: 298px;
+    width: 66px;
+    height: 66px;
 }
 
 #popTrkImg {
     position: absolute;
-    left: 128px;
-    top: 638px;
-    width: 102px;
-    height: 102px;
+    left: 83px;
+    top: 409px;
+    width: 66px;
+    height: 66px;
 }
 
 #obsTrkImg {
     position: absolute;
-    right: 128px;
-    top: 638px;
-    width: 102px;
-    height: 102px;
+    right: 82px;
+    top: 409px;
+    width: 66px;
+    height: 66px;
 }
 
 #obs_score {
     color: white;
     position: absolute;
-    top: 332px;
+    top: 212px;
     width: 100%;
     text-align: center;
-    font-size: 27px;
+    font-size: 18px;
     font-family: arcade;
 }
 
 #total-text {
     color: #575ff7;
     position: absolute;
-    bottom: 245px;
+    bottom: 157px;
     text-align: center;
     width: 100%;
-    font-size: 14px;
+    font-size: 9px;
     font-family: arcade;
 }
 
@@ -411,15 +437,16 @@ h2 {
     /* border: 4px solid white; */
     margin-left: auto;
     margin-right: auto;
-    width: 530px;
+    width: 340px;
     /* display: relative; */
     position: relative;
 }
 
 #dynamicTags {
+    text-align: left;
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    width: 80%;
 }
 
 /* NAV BAR */
@@ -599,7 +626,7 @@ h2 {
 }
 
 .spotifyLogo {
-    width: 10%;
+    width: 150px;
     display: block;
     position: relative;
     margin-left: auto;

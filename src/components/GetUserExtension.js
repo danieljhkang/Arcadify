@@ -16,6 +16,10 @@ const GetUserExtension = (termProp) => {
     const [obsArtists, setObsArtists] = useState([]);
     const [popTracks, setPopTracks] = useState([]);
     const [obsTracks, setObsTracks] = useState([]);
+    const [popArtSURL, setPopArtSURL] = useState([]);
+    const [obsArtSURL, setObsArtSURL] = useState([]);
+    const [popTrkSURL, setPopTrkSURL] = useState([]);
+    const [obsTrkSURL, setObsTrkSURL] = useState([]);
 
     /*
     * Runs only on the first render
@@ -71,17 +75,22 @@ const GetUserExtension = (termProp) => {
     */
      const getPopArtist = async() => {
         let artistMap = new Map();
+        let linkMap = new Map();
         for(let i = 0; i < 50; i++){
             let indivData = itemArray[i];
             artistMap.set(indivData.name, indivData.popularity);
+            linkMap.set(indivData.external_urls.spotify, indivData.popularity);
         }
         const sortedMap = new Map([...artistMap.entries()].sort((a, b) => b[1] - a[1])); //sorts the map by value
+        const sortedLinkMap = new Map([...linkMap.entries()].sort((a, b) => b[1] - a[1]));
 
         //the most popular artist
         setPopArtists(Array.from(sortedMap.keys()));
+        setPopArtSURL(Array.from(sortedLinkMap.keys()));
     
         //the most obscure artist
         setObsArtists(Array.from(sortedMap.keys()));
+        setObsArtSURL(Array.from(sortedLinkMap.keys()));
     }
 
     /*
@@ -89,17 +98,22 @@ const GetUserExtension = (termProp) => {
     */
     const getPopTrack = async() => {
         let trackMap = new Map();
+        let linkMap2 = new Map();
         for(let i = 0; i < 50; i++){
             let indivData = itemArray2[i];
             trackMap.set(indivData.name, indivData.popularity);
+            linkMap2.set(indivData.external_urls.spotify, indivData.popularity);
         }
         const sortedMap = new Map([...trackMap.entries()].sort((a, b) => b[1] - a[1])); //sorts the map by value
+        const sortedLinkMap = new Map([...linkMap2.entries()].sort((a, b) => b[1] - a[1]));
 
         //the most popular track
         setPopTracks(Array.from(sortedMap.keys()));
+        setPopTrkSURL(Array.from(sortedLinkMap.keys()));
 
         //the most obscure track
         setObsTracks(Array.from(sortedMap.keys()));
+        setObsTrkSURL(Array.from(sortedLinkMap.keys()));
     }
 
 
@@ -109,32 +123,40 @@ const GetUserExtension = (termProp) => {
     */
     const createDynamicTags = () => {
         deleteDynamicTags();
+        var b = "<br/>"
         for(let i = 45;i<obsTracks.length;i++){
-            var p9 = `<p id="artist-item2">${Math.abs(i-50)}.&nbsp${obsTracks[i]}</p>`;
+            var p9 = `<a id="artist-item2" href=${obsTrkSURL[i]}>${Math.abs(i-50)}.&nbsp${obsTracks[i]}</a>`;
             document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p9);
+            document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b);
         }
-        var p8 = `<p id="songName-item2">MOST UNDERGROUND TRACKS</p>`;
+        var p8 = `<p id="songName-item3">MOST UNDERGROUND TRACKS</p>`;
         document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p8);
 
+        document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b);
         for(let i = 4;i>-1;i--){
-            var p7 = `<p id="artist-item2">${i+1}.&nbsp${popTracks[i]}</p>`;
+            var p7 = `<a id="artist-item2" href=${popTrkSURL[i]}>${i+1}.&nbsp${popTracks[i]}</a>`;
             document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p7);
+            document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b);
         }
-        var p6 = `<p id="songName-item2">MOST POPULAR TRACKS</p>`;
+        var p6 = `<p id="songName-item3">MOST POPULAR TRACKS</p>`;
         document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p6);
 
+        document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b);
         for(let i = 45;i<obsArtists.length;i++){
-            var p5 = `<p id="artist-item2">${Math.abs(i-50)}.&nbsp${obsArtists[i]}</p>`;
+            var p5 = `<a id="artist-item2" href=${obsArtSURL[i]}>${Math.abs(i-50)}.&nbsp${obsArtists[i]}</a>`;
             document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p5);
+            document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b);
         }
-        var p4 = `<p id="songName-item2">MOST UNDERGROUND ARTISTS</p>`;
+        var p4 = `<p id="songName-item3">MOST UNDERGROUND ARTISTS</p>`;
         document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p4);
 
+        document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b);
         for(let i = 4;i>-1;i--){
-            var p2 = `<p id="artist-item2">${i+1}.&nbsp${popArtists[i]}</p>`;
+            var p2 = `<a id="artist-item2" href=${popArtSURL[i]}>${i+1}.&nbsp${popArtists[i]}</a>`;
             document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p2);
+            document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b);
         }
-        var p3 = `<p id="songName-item2">MOST POPULAR ARTISTS</p>`;
+        var p3 = `<p id="songName-item3">MOST POPULAR ARTISTS</p>`;
         document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p3);
     }
 

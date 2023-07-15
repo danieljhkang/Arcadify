@@ -12,6 +12,8 @@ const GetTrackExtension = (termProp) => {
     const [mount2, setMount2] = useState(false);
     const [clippedData, setClippedData] = useState([]);
     const [artistData, setArtistData] = useState([]);
+    const [linkData, setLinkData] = useState([]); // URLs for the artist's spotify link
+    const [linkDataArtist, setLinkDataArtist] = useState([]);
 
     /*
     * Runs only on the first render
@@ -46,18 +48,22 @@ const GetTrackExtension = (termProp) => {
     */
     const titleCharacterLimiter = () => {
         let titleArray = [];
+        let linkArray = [];
         for(let i = 0; i < 50; i++){
             let indivData = itemArray[i];
             let indivName = indivData.name
             indivName = indivName.substring(0,40);
             titleArray.push(indivName);
+            linkArray.push(indivData.external_urls.spotify);
         }
         setClippedData(titleArray);
+        setLinkData(linkArray);
     }
 
     //item array[50] -> artists array[x]
     const handleGetArtistNames = () => {
         let finalArray = [];
+        let artistLinkArray = [];
         for(let i = 0; i < 50; i++){
             let indivData = itemArray[i];
             let artistsArray = indivData.artists; //array containing every artist on song
@@ -72,12 +78,14 @@ const GetTrackExtension = (termProp) => {
                     artistString = artistsArray[0].name;
                 }
             }
+            artistLinkArray.push(artistsArray[0].external_urls.spotify);
             // limit each string to 30 characters
             artistString = artistString.substring(0,40);
             // final product
             finalArray.push(artistString);
         }
         setArtistData(finalArray);
+        setLinkDataArtist(artistLinkArray);
         setMount2(!mount2);
     }
 
@@ -88,15 +96,22 @@ const GetTrackExtension = (termProp) => {
         deleteDynamicTags();
         for(let i = 49;i>7;i--){
             if(i===8){
-                var p2 = `<p id="artist-item2">&nbsp&nbsp&nbsp&nbsp${artistData[i]}</p>`;
+                var p2 = `<a id="artist-item2" href=${linkDataArtist[i]}>&nbsp&nbsp&nbsp&nbsp${artistData[i]}</a>`;
                 document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p2);
-                var p = `<p id="songName-item2">${i+1}.&nbsp&nbsp${clippedData[i]}</p>`;
+                var b = "<br/>"
+                document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b);
+                var p = `<a id="songName-item2" href=${linkData[i]}>${i+1}.&nbsp&nbsp${clippedData[i]}</a>`;
                 document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p);
+                document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b);
             }else{
-                var p3 = `<p id="artist-item2">&nbsp&nbsp&nbsp&nbsp${artistData[i]}</p>`;
+                var p3 = `<a id="artist-item2" href=${linkDataArtist[i]}>&nbsp&nbsp&nbsp&nbsp${artistData[i]}</a>`;
                 document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p3);
-                var p4 = `<p id="songName-item2">${i+1}.&nbsp${clippedData[i]}</p>`;
+                var b2 = "<br/>"
+                document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b2);
+                var p4 = `<a id="songName-item2" href=${linkData[i]}>${i+1}.&nbsp${clippedData[i]}</a>`;
                 document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p4);
+                document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b2);
+                
             }
         }
     }

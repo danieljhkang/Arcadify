@@ -16,6 +16,7 @@ const GetTopArtists = (termProp) => {
     const [clippedData, setClippedData] = useState([]);
     const [popScoreData, setPopScoreData] = useState([])
     const [totalScore, setTotalScore] = useState(0);
+    const [linkData, setLinkData] = useState([]); // URLs for the artist's spotify link
 ;
     /*
     * Runs only on the first render
@@ -73,13 +74,16 @@ const GetTopArtists = (termProp) => {
     */
     const titleCharacterLimiter = () => {
         let titleArray = [];
+        let linkArray = [];
         for(let i = 0; i < 8; i++){
             let indivData = itemArray[i];
             let indivName = indivData.name
             indivName = indivName.substring(0,18);
             titleArray.push(indivName);
+            linkArray.push(indivData.external_urls.spotify);
         }
         setClippedData(titleArray);
+        setLinkData(linkArray);
     }
 
     /*
@@ -107,15 +111,22 @@ const GetTopArtists = (termProp) => {
                 <p id="leaderboard-item">7TH</p>
                 <p id="leaderboard-item">8TH</p>
             </div>
-            <div id="songName-view">
-                <p id="songName-item">{clippedData[0]}</p>   
-                <p id="songName-item">{clippedData[1]}</p>             
-                <p id="songName-item">{clippedData[2]}</p> 
-                <p id="songName-item">{clippedData[3]}</p> 
-                <p id="songName-item">{clippedData[4]}</p> 
-                <p id="songName-item">{clippedData[5]}</p> 
-                <p id="songName-item">{clippedData[6]}</p>
-                <p id="songName-item">{clippedData[7]}</p>  
+            <div id="main-view">
+                <a id="artistOrGenreOnly-item" href={linkData[0]}>{clippedData[0]}</a> 
+                <br/>  
+                <a id="artistOrGenreOnly-item" href={linkData[1]}>{clippedData[1]}</a>  
+                <br/>            
+                <a id="artistOrGenreOnly-item" href={linkData[2]}>{clippedData[2]}</a> 
+                <br/> 
+                <a id="artistOrGenreOnly-item" href={linkData[3]}>{clippedData[3]}</a> 
+                <br/> 
+                <a id="artistOrGenreOnly-item" href={linkData[4]}>{clippedData[4]}</a> 
+                <br/> 
+                <a id="artistOrGenreOnly-item" href={linkData[5]}>{clippedData[5]}</a> 
+                <br/> 
+                <a id="artistOrGenreOnly-item" href={linkData[6]}>{clippedData[6]}</a>
+                <br/> 
+                <a id="artistOrGenreOnly-item" href={linkData[7]}>{clippedData[7]}</a>  
             </div>
             <div id="popScore-view">
                 <p id="popScore-item">{popScoreData[7]}</p>

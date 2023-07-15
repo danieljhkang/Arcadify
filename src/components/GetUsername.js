@@ -12,6 +12,7 @@ const GetUsername = () => {
     const [year, setYear] = useState();
     const [userName, setUserName] = useState('');
     const [userName2, setUserName2] = useState('');
+    const [userLink, setUserLink] = useState('');
     
     /*
     * Runs only on the first render
@@ -37,6 +38,8 @@ const GetUsername = () => {
         }).then(response => {
             let userData = response.data;
             setUserName(formatUserName(userData.display_name));
+            console.log(userData.external_urls.spotify);
+            setUserLink(userData.external_urls.spotify);
             getDates();
         })
         .catch((error) => {
@@ -116,8 +119,11 @@ const GetUsername = () => {
             <p id = "dayVal">{day}</p>
             <p id = "monthVal">{month}</p>
             <p id = "yearVal">{year}</p>
-            <p id = "userName">{userName}</p>  
-            <p id = "userName2">{userName2}</p>  
+            <div id="userNameView">
+                <a id = "userName" href={userLink}>{userName}</a>
+                <br/>
+                <a id = "userName2" href={userLink}>{userName2}</a>
+            </div>
         </>
         
     )

@@ -26,6 +26,10 @@ const GetUserStats = (termProp) => {
     const [popTrackURL, setPopTrackURL] = useState('');
     const [obsTrackURL, setObsTrackURL] = useState('');
     const [musicScore, setMusicScore] = useState(0);
+    const [popArtSURL, setPopArtSURL] = useState('');
+    const [obsArtSURL, setObsArtSURL] = useState('');
+    const [popTrkSURL, setPopTrkSURL] = useState('');
+    const [obsTrkSURL, setObsTrkSURL] = useState('');
     
     /*
     * Runs only on the first render
@@ -128,17 +132,22 @@ const GetUserStats = (termProp) => {
     */
     const getPopArtist = async() => {
         let artistMap = new Map();
+        let linkMap = new Map();
         for(let i = 0; i < 50; i++){
             let indivData = itemArray[i];
             artistMap.set(indivData.images[1].url, indivData.popularity);
+            linkMap.set(indivData.external_urls.spotify, indivData.popularity);
         }
         const sortedMap = new Map([...artistMap.entries()].sort((a, b) => b[1] - a[1])); //sorts the map by value
+        const sortedLinkMap = new Map([...linkMap.entries()].sort((a, b) => b[1] - a[1]));
 
         //the most popular artist
         setPopArtURL(Array.from(sortedMap.keys())[0]);
+        setPopArtSURL(Array.from(sortedLinkMap.keys())[0]);
     
         //the most obscure artist
         setObsArtURL(Array.from(sortedMap.keys()).pop());
+        setObsArtSURL(Array.from(sortedLinkMap.keys()).pop());
 
         //gets all the popularity scores and puts into array
         const popScores = Array.from(sortedMap.values());
@@ -151,17 +160,22 @@ const GetUserStats = (termProp) => {
     */
     const getPopTrack = async() => {
         let trackMap = new Map();
+        let linkMap2 = new Map();
         for(let i = 0; i < 50; i++){
             let indivData = itemArray2[i];
             trackMap.set(indivData.album.images[1].url, indivData.popularity);
+            linkMap2.set(indivData.external_urls.spotify, indivData.popularity);
         }
         const sortedMap = new Map([...trackMap.entries()].sort((a, b) => b[1] - a[1])); //sorts the map by value
+        const sortedLinkMap = new Map([...linkMap2.entries()].sort((a, b) => b[1] - a[1]));
 
         //the most popular track
         setPopTrackURL(Array.from(sortedMap.keys())[0]);
+        setPopTrkSURL(Array.from(sortedLinkMap.keys())[0]);
     
         //the most obscure track
         setObsTrackURL(Array.from(sortedMap.keys()).pop());
+        setObsTrkSURL(Array.from(sortedLinkMap.keys()).pop());
 
         //gets all the popularity scores and puts into array
         const popScores = Array.from(sortedMap.values());
@@ -255,10 +269,18 @@ const GetUserStats = (termProp) => {
         <p id = "yearVal">{year}</p>
         <p id = "userStatName">{userName}</p>  
         <p id = "userStatName2">{userName2}</p>  
-        <img id="popArtImg" src={popArtURL} alt="popular artist"></img>
-        <img id="obsArtImg" src={obsArtURL} alt="obscure artist"></img>
-        <img id="popTrkImg" src={popTrackURL} alt="popular track"></img>
-        <img id="obsTrkImg" src={obsTrackURL} alt="obscure track"></img>
+        <a href={popArtSURL}>
+            <img id="popArtImg" src={popArtURL} alt="popular artist"></img>
+        </a>
+        <a href={obsArtSURL}>
+            <img id="obsArtImg" src={obsArtURL} alt="obscure artist"></img>
+        </a>
+        <a href={popTrkSURL}>
+            <img id="popTrkImg" src={popTrackURL} alt="popular track"></img>
+        </a>
+        <a href={obsTrkSURL}>
+            <img id="obsTrkImg" src={obsTrackURL} alt="obscure track"></img>
+        </a>
         <p id="obs_score">{musicScore}/10</p>
 
         <p id = "userStatTitle1">MUSIC OBSCURITY</p>

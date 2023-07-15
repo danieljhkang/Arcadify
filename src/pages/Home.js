@@ -16,7 +16,8 @@ import GetUserExtension from '../components/GetUserExtension';
 
 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
-const REDIRECT_URL_AFTER_LOGIN = "https://arcadify.netlify.app/";
+// "https://arcadify.netlify.app/"
+const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000";
 const SPACE_DELIMITER = "%20";
 const SCOPES = ["user-top-read user-read-email user-read-private"]; //i can access users top artists/songs through this scope
 const SCOPES_URL_PARAM = SCOPES.join(SPACE_DELIMITER);
@@ -91,7 +92,7 @@ const Home = () => {
         const spotifyLogout = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40');
         setTimeout(function(){
             spotifyLogout.close()
-            window.location.href = "http://localhost:3000/";
+            window.location.href = "http://localhost:3000";
            },2000);    
     };
 

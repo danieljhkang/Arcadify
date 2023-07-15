@@ -17,6 +17,8 @@ const GetTopSongs = (termProp) => {
     const [artistData, setArtistData] = useState([]);
     const [popScoreData, setPopScoreData] = useState([])
     const [totalScore, setTotalScore] = useState(0);
+    const [linkData, setLinkData] = useState([]); // URLs for the artist's spotify link
+    const [linkDataArtist, setLinkDataArtist] = useState([]);
 ;
     /*
     * Runs only on the first render
@@ -74,18 +76,22 @@ const GetTopSongs = (termProp) => {
     */
     const titleCharacterLimiter = () => {
         let titleArray = [];
+        let linkArray = [];
         for(let i = 0; i < 8; i++){
             let indivData = itemArray[i];
             let indivName = indivData.name
             indivName = indivName.substring(0,18);
             titleArray.push(indivName);
+            linkArray.push(indivData.external_urls.spotify);
         }
         setClippedData(titleArray);
+        setLinkData(linkArray);
     }
 
     //item array[8] -> artists array[x]
     const handleGetArtistNames = () => {
         let finalArray = [];
+        let artistLinkArray = [];
         for(let i = 0; i < 8; i++){
             let indivData = itemArray[i];
             let artistsArray = indivData.artists; //array containing every artist on song
@@ -100,12 +106,14 @@ const GetTopSongs = (termProp) => {
                     artistString = artistsArray[0].name;
                 }
             }
+            artistLinkArray.push(artistsArray[0].external_urls.spotify);
             // limit each string to 18 characters
             artistString = artistString.substring(0,18);
             // final product
             finalArray.push(artistString);
         }
         setArtistData(finalArray);
+        setLinkDataArtist(artistLinkArray);
     }
 
     /*
@@ -134,24 +142,39 @@ const GetTopSongs = (termProp) => {
                 <p id="leaderboard-item">8TH</p>
             </div>
             <div id="artist-view">
-                <p id="artist-item">{artistData[0]}</p>
-                <p id="artist-item">{artistData[1]}</p>
-                <p id="artist-item">{artistData[2]}</p>
-                <p id="artist-item">{artistData[3]}</p>
-                <p id="artist-item">{artistData[4]}</p>
-                <p id="artist-item">{artistData[5]}</p>
-                <p id="artist-item">{artistData[6]}</p>
-                <p id="artist-item">{artistData[7]}</p>
             </div>
-            <div id="songName-view">
-                <p id="songName-item">{clippedData[0]}</p>   
-                <p id="songName-item">{clippedData[1]}</p>             
-                <p id="songName-item">{clippedData[2]}</p> 
-                <p id="songName-item">{clippedData[3]}</p> 
-                <p id="songName-item">{clippedData[4]}</p> 
-                <p id="songName-item">{clippedData[5]}</p> 
-                <p id="songName-item">{clippedData[6]}</p>
-                <p id="songName-item">{clippedData[7]}</p>  
+            <div id="main-view">
+                <a id="songName-item" href={linkData[0]}>{clippedData[0]}</a>  
+                <br/> 
+                <a id="artist-item" href={linkDataArtist[0]}>{artistData[0]}</a>
+                <br/>
+                <a id="songName-item" href={linkData[1]}>{clippedData[1]}</a>  
+                <br/>            
+                <a id="artist-item" href={linkDataArtist[1]}>{artistData[1]}</a>
+                <br/> 
+                <a id="songName-item" href={linkData[2]}>{clippedData[2]}</a> 
+                <br/> 
+                <a id="artist-item" href={linkDataArtist[2]}>{artistData[2]}</a>
+                <br/> 
+                <a id="songName-item" href={linkData[3]}>{clippedData[3]}</a> 
+                <br/> 
+                <a id="artist-item" href={linkDataArtist[3]}>{artistData[3]}</a>
+                <br/> 
+                <a id="songName-item" href={linkData[4]}>{clippedData[4]}</a> 
+                <br/> 
+                <a id="artist-item" href={linkDataArtist[4]}>{artistData[4]}</a>
+                <br/> 
+                <a id="songName-item" href={linkData[5]}>{clippedData[5]}</a> 
+                <br/> 
+                <a id="artist-item" href={linkDataArtist[5]}>{artistData[5]}</a>
+                <br/> 
+                <a id="songName-item" href={linkData[6]}>{clippedData[6]}</a>
+                <br/> 
+                <a id="artist-item" href={linkDataArtist[6]}>{artistData[6]}</a>
+                <br/> 
+                <a id="songName-item" href={linkData[7]}>{clippedData[7]}</a> 
+                <br/> 
+                <a id="artist-item" href={linkDataArtist[7]}>{artistData[7]}</a>
             </div>
             <div id="popScore-view">
                 <p id="popScore-item">{popScoreData[7]}</p>

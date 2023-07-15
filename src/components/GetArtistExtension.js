@@ -11,6 +11,8 @@ const GetArtistExtension = (termProp) => {
     const [mount, setMount] = useState(false); //boolean to control the number of calls
     const [mount2, setMount2] = useState(false);
     const [clippedData, setClippedData] = useState([]);
+    const [linkData, setLinkData] = useState([]); // URLs for the artist's spotify link
+
 
     /*
     * Runs only on the first render
@@ -43,14 +45,17 @@ const GetArtistExtension = (termProp) => {
     * Takes object received from response.data then limits the track title to 18 characters
     */
     const titleCharacterLimiter = () => {
+        let linkArray = [];
         let titleArray = [];
         for(let i = 0; i < 50; i++){
             let indivData = itemArray[i];
             let indivName = indivData.name
             indivName = indivName.substring(0,40);
             titleArray.push(indivName);
+            linkArray.push(indivData.external_urls.spotify);
         }
         setClippedData(titleArray);
+        setLinkData(linkArray);
         setMount2(!mount2);
     }
 
@@ -61,11 +66,15 @@ const GetArtistExtension = (termProp) => {
         deleteDynamicTags();
         for(let i = 49;i>7;i--){
             if(i===8){
-                var p2 = `<p id="songName-item2">${i+1}.&nbsp&nbsp${clippedData[i]}</p>`;
+                var p2 = `<a id="songName-item3" href=${linkData[i]}>${i+1}.&nbsp&nbsp${clippedData[i]}</a>`;
                 document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p2);
+                var b = "<br/>";
+                document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b);
             }else{
-                var p3 = `<p id="songName-item2">${i+1}.&nbsp${clippedData[i]}</p>`;
+                var p3 = `<a id="songName-item3" href=${linkData[i]}>${i+1}.&nbsp${clippedData[i]}</a>`;
                 document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', p3);
+                var b2 = "<br/>";
+                document.getElementById("dynamicTags").insertAdjacentHTML('afterbegin', b2);
             }
         }
     }
