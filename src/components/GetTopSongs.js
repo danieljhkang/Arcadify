@@ -6,7 +6,6 @@ import GetUsername from "./GetUsername";
 const GetTopSongs = (termProp) => {
     //term can be "short_term", "medium_term", or "long_term"
     const TERM = termProp.termProp.curTerm.currentTerm;
-    const termDisplay = termProp.termProp.termText.termText;
     const SONGS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks?limit=8&time_range=${TERM}`; // endpoint = api?, Route to get information from
 
 
@@ -129,7 +128,7 @@ const GetTopSongs = (termProp) => {
 
     return(
         <>  
-            <p id="termDisplay">{termDisplay}</p>
+            
             <p id="hs-text">HIGH SCORES</p>
             <div id="leaderboard-view">
                 <p id="leaderboard-item">TOP</p>
@@ -140,8 +139,6 @@ const GetTopSongs = (termProp) => {
                 <p id="leaderboard-item">6TH</p>
                 <p id="leaderboard-item">7TH</p>
                 <p id="leaderboard-item">8TH</p>
-            </div>
-            <div id="artist-view">
             </div>
             <div id="main-view">
                 <a id="songName-item" href={linkData[0]}>{clippedData[0]}</a>  

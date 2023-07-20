@@ -24,12 +24,18 @@ const About = () => {
             in Spotify's API, it really doesn't mean anything.
         </p>
 
-        <h2>What is music obscurity and what determines its score (in the user stats)?</h2>
+        <h2>What is music obscurity and what determines its rating (in the user stats)?</h2>
         <p className="about-text">
             Music obscurity is how unknown the artist or track is. The more underground
             the artist or track is, the higher their music obscurity points will be. The
             standards for obscurity or popularity is determined by Spotify and this 
             application is just using that data throught the Spotify API.
+        </p>
+
+        <h2>Why is my arcadify not generating?</h2>
+        <p className="about-text">
+            Your Spotify login information expires after every hour. Try going to the home page,
+            refreshing the page, and logging back in!
         </p>
 
         <h2>Are you stealing my data?</h2>

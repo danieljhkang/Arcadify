@@ -38,7 +38,6 @@ const GetUsername = () => {
         }).then(response => {
             let userData = response.data;
             setUserName(formatUserName(userData.display_name));
-            console.log(userData.external_urls.spotify);
             setUserLink(userData.external_urls.spotify);
             getDates();
         })
@@ -80,19 +79,19 @@ const GetUsername = () => {
         let finalMonth;
         let finalDay;
         
-        if(current.getMonth() < 9){
+        if(current.getMonth() < 10){
             let temp = current.getMonth() + 1;
             finalMonth = "0" + temp.toString();
         }else{
             let temp = current.getMonth() + 1; 
-            finalMonth = temp.toString;
+            finalMonth = temp.toString();
         }
-        if(current.getDay() < 10){
+        if(current.getDate() < 10){
             let temp = current.getDate();
             finalDay = "0" + temp.toString();
         }else{
             let temp = current.getDate(); 
-            finalDay = temp.toString;
+            finalDay = temp.toString();
         }
         setDay(finalDay);
         setMonth(finalMonth);

@@ -5,7 +5,6 @@ import axios from "axios";
 const GetUserStats = (termProp) => {
     //term can be "short_term", "medium_term", or "long_term"
     const TERM = termProp.termProp.curTerm.currentTerm;
-    const termDisplay = termProp.termProp.termText.termText;
 
     const USER_ENDPOINT = "https://api.spotify.com/v1/me";
     const ARTISTS_ENDPOINT = `https://api.spotify.com/v1/me/top/artists?limit=50&time_range=${TERM}`; // endpoint = api?, Route to get information from
@@ -75,7 +74,6 @@ const GetUserStats = (termProp) => {
         }
         }).then(response => {
             itemArray = response.data.items;
-            getPopArtist();
         })
         .catch((error) => {
             console.log(error);
@@ -93,7 +91,6 @@ const GetUserStats = (termProp) => {
         }
         }).then(response => {
             itemArray2 = response.data.items;
-            getPopTrack();
         })
         .catch((error) => {
             console.log(error);
@@ -103,8 +100,7 @@ const GetUserStats = (termProp) => {
     const getObscurities = async () => {
         await handleGetObscurity();
         await handleGetObscurity2();
-
-        let finalScore = (10-((await getPopArtist() + await getPopTrack())/1000)).toFixed(2);
+        let finalScore = (10-((await getPopArtist() + await getPopTrack())/1000)).toFixed(2); // subtract from 10; higher obscurity = higher score
         setMusicScore(finalScore);
     }
 
@@ -128,58 +124,52 @@ const GetUserStats = (termProp) => {
     }
 
     /*
-    * Gets the top 50 artists, organizes by popularity
+    * Filters through the top 50 artists, gets the most popular and obscure artists
+    * Gets the image url and spotify urls for the artists
+    * Gets part of the total popularity score by adding them up all together
     */
     const getPopArtist = async() => {
-        let artistMap = new Map();
-        let linkMap = new Map();
+        let scoreSum = 0;
+        let currentHighest = 0;
+        let currentLowest = 100;
         for(let i = 0; i < 50; i++){
             let indivData = itemArray[i];
-            artistMap.set(indivData.images[1].url, indivData.popularity);
-            linkMap.set(indivData.external_urls.spotify, indivData.popularity);
+            if(indivData.popularity > currentHighest){  //most popular artist
+                currentHighest = indivData.popularity;
+                setPopArtURL(indivData.images[1].url);
+                setPopArtSURL(indivData.external_urls.spotify);
+            }else if (indivData.popularity < currentLowest){ //most obscure artist
+                currentLowest = indivData.popularity;
+                setObsArtURL(indivData.images[1].url);
+                setObsArtSURL(indivData.external_urls.spotify);
+            }
+            scoreSum += indivData.popularity;
         }
-        const sortedMap = new Map([...artistMap.entries()].sort((a, b) => b[1] - a[1])); //sorts the map by value
-        const sortedLinkMap = new Map([...linkMap.entries()].sort((a, b) => b[1] - a[1]));
-
-        //the most popular artist
-        setPopArtURL(Array.from(sortedMap.keys())[0]);
-        setPopArtSURL(Array.from(sortedLinkMap.keys())[0]);
-    
-        //the most obscure artist
-        setObsArtURL(Array.from(sortedMap.keys()).pop());
-        setObsArtSURL(Array.from(sortedLinkMap.keys()).pop());
-
-        //gets all the popularity scores and puts into array
-        const popScores = Array.from(sortedMap.values());
-        let scoreSum = popScores.reduce((a, b) => a + b, 0);
         return scoreSum;
     }
 
     /*
-    * Gets the top 50 tracks, organizes by popularity
+    * Filters through the top 50 tracks, gets the most popular and obscure tracks
+    * Gets the image url and spotify urls for the tracks
+    * Gets part of the total popularity score by adding them up all together
     */
     const getPopTrack = async() => {
-        let trackMap = new Map();
-        let linkMap2 = new Map();
+        let scoreSum = 0;
+        let currentHighest = 0;
+        let currentLowest = 100;
         for(let i = 0; i < 50; i++){
             let indivData = itemArray2[i];
-            trackMap.set(indivData.album.images[1].url, indivData.popularity);
-            linkMap2.set(indivData.external_urls.spotify, indivData.popularity);
+            if(indivData.popularity > currentHighest){ //update the image url of most popular song if more popular than current highest
+                currentHighest = indivData.popularity;
+                setPopTrackURL(indivData.album.images[1].url);
+                setPopTrkSURL(indivData.external_urls.spotify);
+            }else if (indivData.popularity < currentLowest){
+                currentLowest = indivData.popularity;
+                setObsTrackURL(indivData.album.images[1].url);
+                setObsTrkSURL(indivData.external_urls.spotify);
+            }
+            scoreSum += indivData.popularity;
         }
-        const sortedMap = new Map([...trackMap.entries()].sort((a, b) => b[1] - a[1])); //sorts the map by value
-        const sortedLinkMap = new Map([...linkMap2.entries()].sort((a, b) => b[1] - a[1]));
-
-        //the most popular track
-        setPopTrackURL(Array.from(sortedMap.keys())[0]);
-        setPopTrkSURL(Array.from(sortedLinkMap.keys())[0]);
-    
-        //the most obscure track
-        setObsTrackURL(Array.from(sortedMap.keys()).pop());
-        setObsTrkSURL(Array.from(sortedLinkMap.keys()).pop());
-
-        //gets all the popularity scores and puts into array
-        const popScores = Array.from(sortedMap.values());
-        let scoreSum = popScores.reduce((a, b) => a + b, 0);
         return scoreSum;
     }
     
@@ -258,7 +248,6 @@ const GetUserStats = (termProp) => {
     }, [mount, TERM]);
 
     return (<>
-        <p id="termDisplay">{termDisplay}</p>
         <img id="prof-image" src={profImgURL} alt ="user profile"></img>
         <p id = "countryName">{countryName}</p>
         <p id = "dayTag">DAY</p>

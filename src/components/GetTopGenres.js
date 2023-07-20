@@ -6,7 +6,6 @@ import GetUsername from "./GetUsername";
 const GetTopGenres = (termProp) => {
         //term can be "short_term", "medium_term", or "long_term"
         const TERM = termProp.termProp.curTerm.currentTerm;
-        const termDisplay = termProp.termProp.termText.termText;
         const SONGS_ENDPOINT = `https://api.spotify.com/v1/me/top/artists?limit=50&time_range=${TERM}`; // endpoint = api?, Route to get information from
         //generate 50 artists, find top genres based on the top 50 artists
     
@@ -102,7 +101,6 @@ const GetTopGenres = (termProp) => {
     
         return(
             <>  
-                <p id="termDisplay">{termDisplay}</p>
                 <p id="hs-text">HIGH SCORES</p>
                 <div id="leaderboard-view">
                     <p id="leaderboard-item">TOP</p>

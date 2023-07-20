@@ -16,6 +16,7 @@ import GetUserExtension from '../components/GetUserExtension';
 
 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
+
 // "https://arcadify.netlify.app/"
 const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000";
 const SPACE_DELIMITER = "%20";
@@ -220,10 +221,11 @@ const Home = () => {
             </div>
             }
             <div id="captureArea">
-                { isLoggedIn && currentSubject === "top_tracks" && (<GetTopSongs termProp = {{curTerm: {currentTerm}, termText: {termText}}} />)}
-                { isLoggedIn && currentSubject === "top_artists" && (<GetTopArtists termProp = {{curTerm: {currentTerm}, termText: {termText}}} />)}
-                { isLoggedIn && currentSubject === "top_genres" && (<GetTopGenres termProp = {{curTerm: {currentTerm}, termText: {termText}}} />)}
-                { isLoggedIn && currentSubject === "user_stats" && (<GetUserStats termProp = {{curTerm: {currentTerm}, termText: {termText}}} />)}
+                <p id="termDisplay">{termText}</p>
+                { isLoggedIn && currentSubject === "top_tracks" && (<GetTopSongs termProp = {{curTerm: {currentTerm}}} />)}
+                { isLoggedIn && currentSubject === "top_artists" && (<GetTopArtists termProp = {{curTerm: {currentTerm}}} />)}
+                { isLoggedIn && currentSubject === "top_genres" && (<GetTopGenres termProp = {{curTerm: {currentTerm}}} />)}
+                { isLoggedIn && currentSubject === "user_stats" && (<GetUserStats termProp = {{curTerm: {currentTerm}}} />)}
                 { isLoggedIn && (<img className="machineTemplate"src={machineTemplate} alt="arcadeMachine"/>)}
             </div>
             

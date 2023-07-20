@@ -3,8 +3,7 @@ const Contact = () => {
     <div className = "about-container">
         <h2>Contact Me</h2>
         <p className="about-text">
-            Although I tried my best to create the best application I could,
-            there is always room for improvements!
+            There is always room for improvements!
         </p>
         <br/>
         <p className="about-text">
