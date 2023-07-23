@@ -26,8 +26,14 @@ h2 {
     font-family: "Helvetica Neue", sans-serif;
 }
 
+br {
+    margin: 0px;
+    height: 9px;
+    width: 0px;
+}
+
 .container {
-    margin: 1rem;
+    /* margin: 1rem; */
     text-align: center;
 }
 
@@ -66,8 +72,6 @@ h2 {
     font-size: 16px;
 }
 
-
-
 /* CAPTURE AREA */
 
 .machineTemplate {
@@ -79,6 +83,10 @@ h2 {
     z-index: -10;
     display: block
         /* do not remove display: block, it removes the 3px padding on chrome */
+}
+
+.screen-space {
+    margin: 0px;
 }
 
 #termDisplay {
@@ -165,6 +173,7 @@ h2 {
     display: inline-block;
     color: white;
     text-decoration: none;
+    height: 11px !important;
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
@@ -189,16 +198,17 @@ h2 {
     position: absolute;
     top: 176px;
     text-align: right;
-    left: 60px;
-    font-size: 8px;
+    left: 58px;
+    font-size: 9px;
     font-family: arcade;
 }
 
 #leaderboard-item {
+    height: 11px !important;
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-bottom: 25px;
+    margin-bottom: 24px;
 }
 
 #main-view {
@@ -218,12 +228,14 @@ h2 {
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 24px;
+    height: 11px !important;
 }
 
 #songName-item {
     display: inline-block;
     color: #f9de54;
     text-decoration: none;
+    height: 11px !important;
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
@@ -259,13 +271,14 @@ h2 {
     color: #575ff7;
     position: absolute;
     top: 176px;
-    text-align: left;
-    right: 60px;
+    text-align: right;
+    right: 58px;
     font-size: 9px;
     font-family: arcade;
 }
 
 #popScore-item {
+    height: 11px !important;
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
@@ -348,6 +361,8 @@ h2 {
     left: 25%;
     font-size: 9px;
     font-family: arcade;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 #userStatTitle3 {
@@ -358,6 +373,8 @@ h2 {
     right: 64px;
     font-size: 9px;
     font-family: arcade;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 #userStatTitle4 {
@@ -368,6 +385,8 @@ h2 {
     left: 25%;
     font-size: 9px;
     font-family: arcade;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 #userStatTitle5 {
@@ -378,6 +397,8 @@ h2 {
     right: 64px;
     font-size: 9px;
     font-family: arcade;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 #prof-image {
@@ -392,7 +413,7 @@ h2 {
 #popArtImg {
     position: absolute;
     left: 83px;
-    top: 298px;
+    top: 285px;
     width: 66px;
     height: 66px;
 }
@@ -400,7 +421,7 @@ h2 {
 #obsArtImg {
     position: absolute;
     right: 82px;
-    top: 298px;
+    top: 285px;
     width: 66px;
     height: 66px;
 }
@@ -408,7 +429,7 @@ h2 {
 #popTrkImg {
     position: absolute;
     left: 83px;
-    top: 409px;
+    top: 397px;
     width: 66px;
     height: 66px;
 }
@@ -416,7 +437,7 @@ h2 {
 #obsTrkImg {
     position: absolute;
     right: 82px;
-    top: 409px;
+    top: 397px;
     width: 66px;
     height: 66px;
 }
@@ -446,6 +467,7 @@ h2 {
     margin-left: auto;
     margin-right: auto;
     width: 340px;
+    line-height: 9px;
     /* display: relative; */
     position: relative;
 }
@@ -464,7 +486,6 @@ h2 {
     justify-content: space-between;
     align-items: stretch;
     gap: 1rem;
-    padding: 0 1rem;
     text-align: center;
 }
 

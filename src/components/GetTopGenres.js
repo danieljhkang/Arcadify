@@ -78,7 +78,7 @@ const GetTopGenres = (termProp) => {
             let topGenresScoreArray = [];
             //put top 8 genre scores into topGenresScoreArray
             for(let i = 0; i<8; i++){
-                let indivPercent = (fullGenrePercentArray[i]/50) * 100;
+                let indivPercent = Math.round((fullGenrePercentArray[i]/50) * 100);
                 topGenresScoreArray.push(indivPercent + "%");                
             }
             setClippedData(topGenresArray);
