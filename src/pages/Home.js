@@ -17,8 +17,8 @@ import GetUserExtension from '../components/GetUserExtension';
 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
 
-//"http://localhost:3000"
-const REDIRECT_URL_AFTER_LOGIN = "https://arcadify.netlify.app/";
+// "https://arcadify.netlify.app/"
+const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000";
 const SPACE_DELIMITER = "%20";
 const SCOPES = ["user-top-read user-read-email user-read-private"]; //i can access users top artists/songs through this scope
 const SCOPES_URL_PARAM = SCOPES.join(SPACE_DELIMITER);
@@ -47,6 +47,10 @@ const Home = () => {
     const [subjectText, setSubjectText] = useState("TOP TRACKS");
 
     const [isExtended, setIsExtended] = useState(false);
+
+    const [day, setDay] = useState();
+    const [month, setMonth] = useState();
+    const [year, setYear] = useState();
     
     /*
     * takes spotify access token and sets them into localStorage
@@ -76,6 +80,7 @@ const Home = () => {
 
     useEffect(()=>{
         localStorage.setItem("term", currentTerm);
+        getDates();
     }, [currentTerm]);
 
     /*
@@ -93,7 +98,7 @@ const Home = () => {
         const spotifyLogout = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40');
         setTimeout(function(){
             spotifyLogout.close()
-            window.location.href = "https://arcadify.netlify.app/";
+            window.location.href = "http://localhost:3000";
            },2000);    
     };
 
@@ -197,6 +202,33 @@ const Home = () => {
         localStorage.setItem("term", currentTerm);
     }
 
+    /*
+    * Gets today's dates
+    */
+    const getDates = () => {
+        const current = new Date();
+        let finalMonth;
+        let finalDay;
+        
+        if(current.getMonth() < 10){
+            let temp = current.getMonth() + 1;
+            finalMonth = "0" + temp.toString();
+        }else{
+            let temp = current.getMonth() + 1; 
+            finalMonth = temp.toString();
+        }
+        if(current.getDate() < 10){
+            let temp = current.getDate();
+            finalDay = "0" + temp.toString();
+        }else{
+            let temp = current.getDate(); 
+            finalDay = temp.toString();
+        }
+        setDay(finalDay);
+        setMonth(finalMonth);
+        setYear(current.getFullYear());
+    }
+
     //will check off a boolean that allows the extension component to show
     const handleExtend = () => {
         setIsExtended(!isExtended);
@@ -221,7 +253,32 @@ const Home = () => {
             </div>
             }
             <div id="captureArea">
-                { isLoggedIn && <p id="termDisplay">{termText}</p> }
+                { isLoggedIn && 
+                    <>
+                        <p id = "dayTag">DAY</p>
+                        <p id = "monthTag">MONTH</p>
+                        <p id = "yearTag">YEAR</p>
+                        <p id = "dayVal">{day}</p>
+                        <p id = "monthVal">{month}</p>
+                        <p id = "yearVal">{year}</p>
+                        <p id="termDisplay">{termText}</p>
+                    </> }
+                { isLoggedIn && (currentSubject === "top_tracks" || currentSubject === "top_artists" || currentSubject === "top_genres")
+                    && 
+                    <>
+                        <p id="hs-text">HIGH SCORES</p>
+                        <div id="left-column">
+                            <p id="leaderboard-item">TOP</p>
+                            <p id="leaderboard-item">2ND</p>
+                            <p id="leaderboard-item">3RD</p>
+                            <p id="leaderboard-item">4TH</p>
+                            <p id="leaderboard-item">5TH</p>
+                            <p id="leaderboard-item">6TH</p>
+                            <p id="leaderboard-item">7TH</p>
+                            <p id="leaderboard-item">8TH</p>
+                        </div>
+                    </>
+                }
                 { isLoggedIn && currentSubject === "top_tracks" && (<GetTopSongs termProp = {{curTerm: {currentTerm}}} />)}
                 { isLoggedIn && currentSubject === "top_artists" && (<GetTopArtists termProp = {{curTerm: {currentTerm}}} />)}
                 { isLoggedIn && currentSubject === "top_genres" && (<GetTopGenres termProp = {{curTerm: {currentTerm}}} />)}

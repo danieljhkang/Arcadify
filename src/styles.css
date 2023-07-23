@@ -169,7 +169,7 @@ br {
     font-family: arcade;
 }
 
-#artist-item {
+#sub-item {
     display: inline-block;
     color: white;
     text-decoration: none;
@@ -193,7 +193,7 @@ br {
     margin-bottom: 20px;
 }
 
-#leaderboard-view {
+#left-column {
     color: #da3334;
     position: absolute;
     top: 176px;
@@ -211,7 +211,7 @@ br {
     margin-bottom: 24px;
 }
 
-#main-view {
+#middle-column {
     position: absolute;
     top: 176px;
     text-align: left;
@@ -231,7 +231,7 @@ br {
     height: 11px !important;
 }
 
-#songName-item {
+#primary-item {
     display: inline-block;
     color: #f9de54;
     text-decoration: none;
@@ -267,7 +267,7 @@ br {
     margin-bottom: 20px;
 }
 
-#popScore-view {
+#right-column {
     color: #575ff7;
     position: absolute;
     top: 176px;

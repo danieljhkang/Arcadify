@@ -13,9 +13,6 @@ const GetUserStats = (termProp) => {
 
     const [token, setToken] = useState('');
     const [mount, setMount] = useState(false); //boolean to control the number of calls
-    const [day, setDay] = useState();
-    const [month, setMonth] = useState();
-    const [year, setYear] = useState();
     const [userName, setUserName] = useState('');
     const [userName2, setUserName2] = useState('');
     const [profImgURL, setProfImgURL] = useState('');
@@ -56,7 +53,6 @@ const GetUserStats = (termProp) => {
             setProfImgURL(userData.images[1].url);
             setCountryName(formatCountryName(userData.country));         
             setUserName(formatUserName(userData.display_name));
-            getDates();
         })
         .catch((error) => {
             console.log(error);
@@ -199,33 +195,6 @@ const GetUserStats = (termProp) => {
         }
         return line2;
     }
-    
-    /*
-    * Gets current date
-    */
-    const getDates = () => {
-        const current = new Date();
-        let finalMonth;
-        let finalDay;
-        
-        if(current.getMonth() < 9){
-            let temp = current.getMonth() + 1;
-            finalMonth = "0" + temp.toString();
-        }else{
-            let temp = current.getMonth() + 1; 
-            finalMonth = temp.toString;
-        }
-        if(current.getDay() < 10){
-            let temp = current.getDate();
-            finalDay = "0" + temp.toString();
-        }else{
-            let temp = current.getDate(); 
-            finalDay = temp.toString;
-        }
-        setDay(finalDay);
-        setMonth(finalMonth);
-        setYear(current.getFullYear());
-    }
 
     /*
     * handleGetUsername was restricted to being called when mount changes
@@ -250,12 +219,6 @@ const GetUserStats = (termProp) => {
     return (<>
         <img id="prof-image" src={profImgURL} alt ="user profile"></img>
         <p id = "countryName">{countryName}</p>
-        <p id = "dayTag">DAY</p>
-        <p id = "monthTag">MONTH</p>
-        <p id = "yearTag">YEAR</p>
-        <p id = "dayVal">{day}</p>
-        <p id = "monthVal">{month}</p>
-        <p id = "yearVal">{year}</p>
         <p id = "userStatName">{userName}</p>  
         <p id = "userStatName2">{userName2}</p>  
         <a href={popArtSURL}>

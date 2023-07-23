@@ -7,9 +7,6 @@ const GetUsername = () => {
 
     const [token, setToken] = useState('');
     const [mount, setMount] = useState(false); //boolean to control the number of calls
-    const [day, setDay] = useState();
-    const [month, setMonth] = useState();
-    const [year, setYear] = useState();
     const [userName, setUserName] = useState('');
     const [userName2, setUserName2] = useState('');
     const [userLink, setUserLink] = useState('');
@@ -39,7 +36,6 @@ const GetUsername = () => {
             let userData = response.data;
             setUserName(formatUserName(userData.display_name));
             setUserLink(userData.external_urls.spotify);
-            getDates();
         })
         .catch((error) => {
             console.log(error);
@@ -70,33 +66,6 @@ const GetUsername = () => {
         }
         return line2;
     }
-    
-    /*
-    * Gets today's dates
-    */
-    const getDates = () => {
-        const current = new Date();
-        let finalMonth;
-        let finalDay;
-        
-        if(current.getMonth() < 10){
-            let temp = current.getMonth() + 1;
-            finalMonth = "0" + temp.toString();
-        }else{
-            let temp = current.getMonth() + 1; 
-            finalMonth = temp.toString();
-        }
-        if(current.getDate() < 10){
-            let temp = current.getDate();
-            finalDay = "0" + temp.toString();
-        }else{
-            let temp = current.getDate(); 
-            finalDay = temp.toString();
-        }
-        setDay(finalDay);
-        setMonth(finalMonth);
-        setYear(current.getFullYear());
-    }
 
     /*
     * handleGetUsername was restricted to being called when mount changes
@@ -112,12 +81,6 @@ const GetUsername = () => {
 
     return (
         <>
-            <p id = "dayTag">DAY</p>
-            <p id = "monthTag">MONTH</p>
-            <p id = "yearTag">YEAR</p>
-            <p id = "dayVal">{day}</p>
-            <p id = "monthVal">{month}</p>
-            <p id = "yearVal">{year}</p>
             <div id="userNameView">
                 <a id = "userName" href={userLink}>{userName}</a>
                 <br/>

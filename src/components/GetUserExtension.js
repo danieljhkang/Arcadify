@@ -8,7 +8,6 @@ const GetUserExtension = (termProp) => {
     const TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=${TERM}`; // endpoint = api?, Route to get information from
     
     const [token, setToken] = useState('');
-    // const [data, setData] = useState({}); //this data is from spotify
     const [mount, setMount] = useState(false); //boolean to control the number of calls
     const [mount2, setMount2] = useState(false);
 

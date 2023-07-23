@@ -12,7 +12,7 @@ const GetTopGenres = (termProp) => {
         const [token, setToken] = useState('');
         // const [data, setData] = useState({}); //this data is from spotify
         const [mount, setMount] = useState(false); //boolean to control the number of calls
-        const [clippedData, setClippedData] = useState([]);
+        const [primaryData, setPrimaryData] = useState([]);
         const [popScoreData, setPopScoreData] = useState([])
         const [totalScore, setTotalScore] = useState(0);
     
@@ -29,7 +29,7 @@ const GetTopGenres = (termProp) => {
         }, []); 
         //empty dependencies array = only runs once when app is opened
        
-        let itemArray;
+        let responseDataArray;
         /*
         * Axios API call to spotify API using the access token
         * Sets the data as the response that is received
@@ -40,7 +40,7 @@ const GetTopGenres = (termProp) => {
                 Authorization: "Bearer " + token,
             }
             }).then(response => {
-                itemArray = response.data.items;
+                responseDataArray = response.data.items;
                 titleCharacterLimiter();
             })
             .catch((error) => {
@@ -54,7 +54,7 @@ const GetTopGenres = (termProp) => {
         const titleCharacterLimiter = () => {
             let genreMap = new Map();
             for(let i = 0; i < 50; i++){
-                let indivData = itemArray[i];
+                let indivData = responseDataArray[i];
                 let genresArray = indivData.genres
                 //set genremap key for every genre in genresArray
                 for(let i = 0; i< genresArray.length;i++){
@@ -64,7 +64,6 @@ const GetTopGenres = (termProp) => {
                         genreMap.set(genresArray[i], 1);
                     }
                 }
-                // genresArray.push(indivName);
             }
             const sortedMap = new Map([...genreMap.entries()].sort((a, b) => b[1] - a[1])); //sorts the map by value
             let fullGenreArray = Array.from(sortedMap.keys()); //put all genre names into fullGenreArray
@@ -81,7 +80,7 @@ const GetTopGenres = (termProp) => {
                 let indivPercent = Math.round((fullGenrePercentArray[i]/50) * 100);
                 topGenresScoreArray.push(indivPercent + "%");                
             }
-            setClippedData(topGenresArray);
+            setPrimaryData(topGenresArray);
             // getGenrePercentage(fullGenrePercentArray);
             setPopScoreData(topGenresScoreArray);
             setTotalScore("100%");
@@ -101,35 +100,24 @@ const GetTopGenres = (termProp) => {
     
         return(
             <>  
-                <p id="hs-text">HIGH SCORES</p>
-                <div id="leaderboard-view">
-                    <p id="leaderboard-item">TOP</p>
-                    <p id="leaderboard-item">2ND</p>
-                    <p id="leaderboard-item">3RD</p>
-                    <p id="leaderboard-item">4TH</p>
-                    <p id="leaderboard-item">5TH</p>
-                    <p id="leaderboard-item">6TH</p>
-                    <p id="leaderboard-item">7TH</p>
-                    <p id="leaderboard-item">8TH</p>
-                </div>
-                <div id="main-view">
-                    <p id="artistOrGenreOnly-item">{clippedData[0]}</p>
+                <div id="middle-column">
+                    <p id="artistOrGenreOnly-item">{primaryData[0]}</p>
                     <br/>   
-                    <p id="artistOrGenreOnly-item">{clippedData[1]}</p>
+                    <p id="artistOrGenreOnly-item">{primaryData[1]}</p>
                     <br/>              
-                    <p id="artistOrGenreOnly-item">{clippedData[2]}</p> 
+                    <p id="artistOrGenreOnly-item">{primaryData[2]}</p> 
                     <br/> 
-                    <p id="artistOrGenreOnly-item">{clippedData[3]}</p>
+                    <p id="artistOrGenreOnly-item">{primaryData[3]}</p>
                     <br/>  
-                    <p id="artistOrGenreOnly-item">{clippedData[4]}</p> 
+                    <p id="artistOrGenreOnly-item">{primaryData[4]}</p> 
                     <br/> 
-                    <p id="artistOrGenreOnly-item">{clippedData[5]}</p> 
+                    <p id="artistOrGenreOnly-item">{primaryData[5]}</p> 
                     <br/> 
-                    <p id="artistOrGenreOnly-item">{clippedData[6]}</p>
+                    <p id="artistOrGenreOnly-item">{primaryData[6]}</p>
                     <br/> 
-                    <p id="artistOrGenreOnly-item">{clippedData[7]}</p>  
+                    <p id="artistOrGenreOnly-item">{primaryData[7]}</p>  
                 </div>
-                <div id="popScore-view">
+                <div id="right-column">
                     <p id="popScore-item">{popScoreData[0]}</p>
                     <p id="popScore-item">{popScoreData[1]}</p>
                     <p id="popScore-item">{popScoreData[2]}</p>

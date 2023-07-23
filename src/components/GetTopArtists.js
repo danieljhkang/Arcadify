@@ -12,10 +12,10 @@ const GetTopArtists = (termProp) => {
     const [token, setToken] = useState('');
     // const [data, setData] = useState({}); //this data is from spotify
     const [mount, setMount] = useState(false); //boolean to control the number of calls
-    const [clippedData, setClippedData] = useState([]);
+    const [primaryData, setPrimaryData] = useState([]);
     const [popScoreData, setPopScoreData] = useState([])
     const [totalScore, setTotalScore] = useState(0);
-    const [linkData, setLinkData] = useState([]); // URLs for the artist's spotify link
+    const [primLinkData, setPrimLinkData] = useState([]); // URLs for the artist's spotify link
 ;
     /*
     * Runs only on the first render
@@ -30,7 +30,7 @@ const GetTopArtists = (termProp) => {
     }, []);
     //empty dependencies array = only runs once when app is opened
    
-    let itemArray;
+    let responseDataArray;
     /*
     * Axios API call to spotify API using the access token
     * Sets the data as the response that is received
@@ -42,7 +42,7 @@ const GetTopArtists = (termProp) => {
         }
         }).then(response => {
             // setData(response.data);
-            itemArray = response.data.items;
+            responseDataArray = response.data.items;
             handleGetPopScore();
             titleCharacterLimiter();
         })
@@ -58,7 +58,7 @@ const GetTopArtists = (termProp) => {
         let popScoreArray = []; 
         let totalScore = 0;
         for(let i = 0; i < 8; i++){
-            let indivData = itemArray[i];
+            let indivData = responseDataArray[i];
             let indivScore = (i+2) * 100 + indivData.popularity;
             popScoreArray.push(indivScore);
             totalScore += indivScore;
@@ -75,14 +75,14 @@ const GetTopArtists = (termProp) => {
         let titleArray = [];
         let linkArray = [];
         for(let i = 0; i < 8; i++){
-            let indivData = itemArray[i];
+            let indivData = responseDataArray[i];
             let indivName = indivData.name
             indivName = indivName.substring(0,18);
             titleArray.push(indivName);
             linkArray.push(indivData.external_urls.spotify);
         }
-        setClippedData(titleArray);
-        setLinkData(linkArray);
+        setPrimaryData(titleArray);
+        setPrimLinkData(linkArray);
     }
 
     /*
@@ -98,35 +98,24 @@ const GetTopArtists = (termProp) => {
 
     return(
         <>  
-            <p id="hs-text">HIGH SCORES</p>
-            <div id="leaderboard-view">
-                <p id="leaderboard-item">TOP</p>
-                <p id="leaderboard-item">2ND</p>
-                <p id="leaderboard-item">3RD</p>
-                <p id="leaderboard-item">4TH</p>
-                <p id="leaderboard-item">5TH</p>
-                <p id="leaderboard-item">6TH</p>
-                <p id="leaderboard-item">7TH</p>
-                <p id="leaderboard-item">8TH</p>
-            </div>
-            <div id="main-view">
-                <a id="artistOrGenreOnly-item" href={linkData[0]}>{clippedData[0]}</a> 
+            <div id="middle-column">
+                <a id="artistOrGenreOnly-item" href={primLinkData[0]}>{primaryData[0]}</a> 
                 <br/>  
-                <a id="artistOrGenreOnly-item" href={linkData[1]}>{clippedData[1]}</a>  
+                <a id="artistOrGenreOnly-item" href={primLinkData[1]}>{primaryData[1]}</a>  
                 <br/>            
-                <a id="artistOrGenreOnly-item" href={linkData[2]}>{clippedData[2]}</a> 
+                <a id="artistOrGenreOnly-item" href={primLinkData[2]}>{primaryData[2]}</a> 
                 <br/> 
-                <a id="artistOrGenreOnly-item" href={linkData[3]}>{clippedData[3]}</a> 
+                <a id="artistOrGenreOnly-item" href={primLinkData[3]}>{primaryData[3]}</a> 
                 <br/> 
-                <a id="artistOrGenreOnly-item" href={linkData[4]}>{clippedData[4]}</a> 
+                <a id="artistOrGenreOnly-item" href={primLinkData[4]}>{primaryData[4]}</a> 
                 <br/> 
-                <a id="artistOrGenreOnly-item" href={linkData[5]}>{clippedData[5]}</a> 
+                <a id="artistOrGenreOnly-item" href={primLinkData[5]}>{primaryData[5]}</a> 
                 <br/> 
-                <a id="artistOrGenreOnly-item" href={linkData[6]}>{clippedData[6]}</a>
+                <a id="artistOrGenreOnly-item" href={primLinkData[6]}>{primaryData[6]}</a>
                 <br/> 
-                <a id="artistOrGenreOnly-item" href={linkData[7]}>{clippedData[7]}</a>  
+                <a id="artistOrGenreOnly-item" href={primLinkData[7]}>{primaryData[7]}</a>  
             </div>
-            <div id="popScore-view">
+            <div id="right-column">
                 <p id="popScore-item">{popScoreData[7]}</p>
                 <p id="popScore-item">{popScoreData[6]}</p>
                 <p id="popScore-item">{popScoreData[5]}</p>
