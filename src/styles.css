@@ -479,6 +479,133 @@ br {
     width: 80%;
 }
 
+/* UNDER CAPTURE AREA */
+
+#colorSelect-green {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    border: none;
+    margin-top: 30px;
+    margin-right: 7px;
+    background-color: #24e68e;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#colorSelect-green:hover {
+    background-color: #a7fa96;
+}
+
+#colorSelect-blue {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    border: none;
+    margin-top: 30px;
+    margin-left: 7px;
+    margin-right: 7px;
+    background-color: #7fc1ff;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#colorSelect-blue:hover {
+    background-color: #7ce8ff;
+}
+
+#colorSelect-red {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    border: none;
+    margin-top: 30px;
+    margin-left: 7px;
+    margin-right: 7px;
+    background-color: #e5283b;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#colorSelect-red:hover {
+    background-color: #f9636b;
+}
+
+#colorSelect-yellow {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    border: none;
+    margin-top: 30px;
+    margin-left: 7px;
+    margin-right: 7px;
+    background-color: #e3c060;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#colorSelect-yellow:hover {
+    background-color: #ffdb5a;
+}
+
+#colorSelect-purple {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    border: none;
+    margin-top: 30px;
+    margin-left: 7px;
+    margin-right: 7px;
+    background-color: #dbb4ff;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#colorSelect-purple:hover {
+    background-color: #fccaff;
+}
+
+
+#colorSelect-pink {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    border: none;
+    margin-top: 30px;
+    margin-left: 7px;
+    margin-right: 7px;
+    background-color: #ffa1d4;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#colorSelect-pink:hover {
+    background-color: #ffcef6;
+}
+
+#colorSelect-white {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    border: none;
+    margin-top: 30px;
+    margin-left: 7px;
+    background-color: #c3c3c3;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#colorSelect-white:hover {
+    background-color: #f2f2f2;
+}
+
 /* NAV BAR */
 
 .nav {
@@ -565,7 +692,7 @@ br {
     font-weight: 500;
     letter-spacing: 0;
     line-height: 1em;
-    margin: 20px;
+    margin: 10px;
     opacity: 1;
     outline: 0;
     padding: 1.5em 2.2em;

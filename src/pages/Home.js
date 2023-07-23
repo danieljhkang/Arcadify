@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import html2canvas from 'html2canvas';
-import machineTemplate from "../assets/arcadifyMachine.png";
+import machineTemplateGreen from "../assets/arcadifyMachine-green.png";
+import machineTemplateBlue from "../assets/arcadifyMachine-blue.png";
+import machineTemplateRed from "../assets/arcadifyMachine-red.png";
+import machineTemplateYellow from "../assets/arcadifyMachine-yellow.png";
+import machineTemplatePurple from "../assets/arcadifyMachine-purple.png";
+import machineTemplatePink from "../assets/arcadifyMachine-pink.png";
+import machineTemplateWhite from "../assets/arcadifyMachine-white.png";
 import leftArrow from "../assets/leftArrow.png";
 import rightArrow from "../assets/rightArrow.png";
 import downArrow from "../assets/downArrow.png";
@@ -51,6 +57,8 @@ const Home = () => {
     const [day, setDay] = useState();
     const [month, setMonth] = useState();
     const [year, setYear] = useState();
+
+    const [machineImage, setMachineImage] = useState(machineTemplateGreen);
     
     /*
     * takes spotify access token and sets them into localStorage
@@ -229,6 +237,28 @@ const Home = () => {
         setYear(current.getFullYear());
     }
 
+    const handleColorGreen = () => {
+        setMachineImage(machineTemplateGreen);
+    }
+    const handleColorBlue = () => {
+        setMachineImage(machineTemplateBlue);
+    }
+    const handleColorRed = () => {
+        setMachineImage(machineTemplateRed);
+    }
+    const handleColorYellow = () => {
+        setMachineImage(machineTemplateYellow);
+    }
+    const handleColorPurple = () => {
+        setMachineImage(machineTemplatePurple);
+    }
+    const handleColorPink = () => {
+        setMachineImage(machineTemplatePink);
+    }
+    const handleColorWhite = () => {
+        setMachineImage(machineTemplateWhite);
+    }
+
     //will check off a boolean that allows the extension component to show
     const handleExtend = () => {
         setIsExtended(!isExtended);
@@ -283,8 +313,21 @@ const Home = () => {
                 { isLoggedIn && currentSubject === "top_artists" && (<GetTopArtists termProp = {{curTerm: {currentTerm}}} />)}
                 { isLoggedIn && currentSubject === "top_genres" && (<GetTopGenres termProp = {{curTerm: {currentTerm}}} />)}
                 { isLoggedIn && currentSubject === "user_stats" && (<GetUserStats termProp = {{curTerm: {currentTerm}}} />)}
-                { isLoggedIn && (<img className="machineTemplate"src={machineTemplate} alt="arcadeMachine"/>)}
+                { isLoggedIn && (<img className="machineTemplate"src={machineImage} alt="arcadeMachine"/>)}
             </div>
+
+            {
+                isLoggedIn && 
+                <div>
+                    <button id='colorSelect-green' onClick={handleColorGreen}></button>
+                    <button id='colorSelect-blue' onClick={handleColorBlue}></button>
+                    <button id='colorSelect-red' onClick={handleColorRed}></button>
+                    <button id='colorSelect-yellow' onClick={handleColorYellow}></button>
+                    <button id='colorSelect-purple' onClick={handleColorPurple}></button>
+                    <button id='colorSelect-pink' onClick={handleColorPink}></button>
+                    <button id='colorSelect-white' onClick={handleColorWhite}></button>
+                </div>
+            }
             
             <br/>
             { isLoggedIn && 
