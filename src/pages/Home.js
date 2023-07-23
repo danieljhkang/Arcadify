@@ -17,8 +17,8 @@ import GetUserExtension from '../components/GetUserExtension';
 
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
 
-// "https://arcadify.netlify.app/"
-const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000";
+//"http://localhost:3000"
+const REDIRECT_URL_AFTER_LOGIN = "https://arcadify.netlify.app/";
 const SPACE_DELIMITER = "%20";
 const SCOPES = ["user-top-read user-read-email user-read-private"]; //i can access users top artists/songs through this scope
 const SCOPES_URL_PARAM = SCOPES.join(SPACE_DELIMITER);
@@ -93,7 +93,7 @@ const Home = () => {
         const spotifyLogout = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40');
         setTimeout(function(){
             spotifyLogout.close()
-            window.location.href = "http://localhost:3000";
+            window.location.href = "https://arcadify.netlify.app/";
            },2000);    
     };
 
@@ -221,7 +221,7 @@ const Home = () => {
             </div>
             }
             <div id="captureArea">
-                <p id="termDisplay">{termText}</p>
+                { isLoggedIn && <p id="termDisplay">{termText}</p> }
                 { isLoggedIn && currentSubject === "top_tracks" && (<GetTopSongs termProp = {{curTerm: {currentTerm}}} />)}
                 { isLoggedIn && currentSubject === "top_artists" && (<GetTopArtists termProp = {{curTerm: {currentTerm}}} />)}
                 { isLoggedIn && currentSubject === "top_genres" && (<GetTopGenres termProp = {{curTerm: {currentTerm}}} />)}
