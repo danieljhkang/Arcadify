@@ -2,7 +2,7 @@
 
 Arcadify is an open source program that creates an arcade graphic based on your most listened Spotify songs, artists, and genres.
 
-This application can be viewed at ...
+This application can be viewed at https://arcadify.netlify.app/
 
 Inspired by Receiptify.
 
