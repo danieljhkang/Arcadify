@@ -26,12 +26,6 @@ h2 {
     font-family: "Helvetica Neue", sans-serif;
 }
 
-br {
-    margin: 0px;
-    height: 9px;
-    width: 0px;
-}
-
 .container {
     /* margin: 1rem; */
     text-align: center;
