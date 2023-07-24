@@ -26,7 +26,9 @@ function App(){
             <p className='nameTag'>Created by&nbsp;</p>
             <a className='nameLink' href='https://www.linkedin.com/in/daniel-kang-46b1a51b9/'>Daniel Kang</a>
         </div>
-        <img src={require('./assets/spotifyLogo.png')} className = "spotifyLogo" alt="spotifyLogo"/>
+        <a href='https://open.spotify.com/'>
+            <img src={require('./assets/spotifyLogo.png')} className = "spotifyLogo" alt="spotifyLogo"/>
+        </a>
     </>
     )
 }
