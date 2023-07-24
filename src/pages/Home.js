@@ -26,7 +26,7 @@ const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
 // "https://arcadify.netlify.app/"
 const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000";
 const SPACE_DELIMITER = "%20";
-const SCOPES = ["user-top-read user-read-email user-read-private"]; //i can access users top artists/songs through this scope
+const SCOPES = ["user-top-read user-read-email"]; //i can access users top artists/songs through this scope
 const SCOPES_URL_PARAM = SCOPES.join(SPACE_DELIMITER);
 
 /*
